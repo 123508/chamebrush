@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="mark">
+  <defs>
+    <marker id="chame-arrow-end" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="context-stroke" /></marker>
+    <marker id="chame-arrow-start" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 10 0 L 0 5 L 10 10 z" fill="context-stroke" /></marker>
+  </defs>
+  
+  <path id="leftBrace" opacity="1" d="M 142 132 C 104 132 92 153 92 190 L 92 210 C 92 232 82 244 68 250 C 60 253 58 254 58 256 C 58 258 60 259 68 262 C 82 268 92 280 92 302 L 92 322 C 92 359 104 380 142 380 L 142 356 C 122 356 118 347 118 322 L 118 300 C 118 278 110 264 94 256 C 110 248 118 234 118 212 L 118 190 C 118 165 122 156 142 156 Z" fill="#172C2B" stroke="none" />
+  <circle id="leftCap0" opacity="1" cx="142" cy="144" r="12" fill="#172C2B" stroke="none" />
+  <circle id="leftCap1" opacity="1" cx="142" cy="368" r="12" fill="#172C2B" stroke="none" />
+  <path id="rightBrace" opacity="1" d="M 370 132 C 408 132 420 153 420 190 L 420 210 C 420 232 430 244 444 250 C 452 253 454 254 454 256 C 454 258 452 259 444 262 C 430 268 420 280 420 302 L 420 322 C 420 359 408 380 370 380 L 370 356 C 390 356 394 347 394 322 L 394 300 C 394 278 402 264 418 256 C 402 248 394 234 394 212 L 394 190 C 394 165 390 156 370 156 Z" fill="#172C2B" stroke="none" />
+  <circle id="rightCap0" opacity="1" cx="370" cy="144" r="12" fill="#172C2B" stroke="none" />
+  <circle id="rightCap1" opacity="1" cx="370" cy="368" r="12" fill="#172C2B" stroke="none" />
+  <rect id="note1" opacity="1" x="164" y="278" width="32" height="38" rx="6" fill="#148568" stroke="none" />
+  <rect id="note2" opacity="1" x="212" y="230" width="32" height="38" rx="6" fill="#148568" stroke="none" />
+  <rect id="note3" opacity="1" x="260" y="254" width="32" height="38" rx="6" fill="#148568" stroke="none" />
+  <rect id="note4" opacity="1" x="308" y="190" width="32" height="38" rx="6" fill="#148568" stroke="none" />
+</svg>

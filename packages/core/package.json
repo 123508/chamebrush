@@ -1,0 +1,36 @@
+{
+  "name": "@chamebrush/core",
+  "version": "0.1.0",
+  "private": false,
+  "description": "Semantic compiler and renderer-independent scene model for Chamebrush",
+  "type": "module",
+  "license": "MIT",
+  "keywords": [
+    "chamebrush",
+    "graphics",
+    "compiler",
+    "scene-graph"
+  ],
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsup src/index.ts --format esm --clean --sourcemap && tsc -p tsconfig.build.json",
+    "prepublishOnly": "pnpm build"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@chamebrush/language": "workspace:^"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "name": "chamebrush",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "packageManager": "pnpm@10.33.2",
+  "scripts": {
+    "dev": "vite --config apps/playground/vite.config.ts",
+    "build": "pnpm typecheck && pnpm build:packages && pnpm build:playground",
+    "build:packages": "pnpm --filter './packages/**' build",
+    "build:playground": "vite build --config apps/playground/vite.config.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "cli": "tsx packages/cli/src/index.ts",
+    "release:check": "pnpm typecheck && pnpm test && pnpm build && pnpm --filter './packages/**' publish --dry-run --access public"
+  },
+  "devDependencies": {
+    "@types/node": "26.5.0",
+    "@types/react": "19.2.18",
+    "@types/react-dom": "19.2.7",
+    "@vitejs/plugin-react": "6.1.1",
+    "tsup": "8.5.1",
+    "tsx": "4.23.13",
+    "typescript": "7.0.2",
+    "vite": "8.2.2",
+    "vitest": "5.0.0"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "name": "@chamebrush/cli",
+  "version": "0.1.0",
+  "private": false,
+  "description": "Command-line renderer for Chamebrush drawing files",
+  "type": "module",
+  "license": "MIT",
+  "keywords": [
+    "chamebrush",
+    "cli",
+    "svg",
+    "png",
+    "webp"
+  ],
+  "files": [
+    "dist"
+  ],
+  "bin": {
+    "chame": "./dist/index.js"
+  },
+  "engines": {
+    "node": ">=20.9.0"
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --format esm --clean --sourcemap",
+    "prepublishOnly": "pnpm build"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@chamebrush/core": "workspace:^",
+    "@chamebrush/renderer-svg": "workspace:^",
+    "sharp": "^0.35.4"
+  }
+}

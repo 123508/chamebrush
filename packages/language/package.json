@@ -1,0 +1,42 @@
+{
+  "name": "@chamebrush/language",
+  "version": "0.1.0",
+  "private": false,
+  "description": "Parser, source AST and editor grammar for the Chamebrush drawing language",
+  "type": "module",
+  "license": "MIT",
+  "keywords": [
+    "chamebrush",
+    "parser",
+    "drawing-language",
+    "lezer"
+  ],
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsup src/index.ts --format esm --clean --sourcemap && tsc -p tsconfig.build.json",
+    "generate": "lezer-generator --typeScript --output src/chamebrush-parser.ts src/chamebrush.grammar",
+    "prepublishOnly": "pnpm build"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@lezer/common": "^1.5.2",
+    "@lezer/highlight": "^1.2.3",
+    "@lezer/lr": "^1.4.10"
+  },
+  "devDependencies": {
+    "@lezer/generator": "^1.8.0"
+  }
+}

@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="480" viewBox="0 0 720 480" role="img" aria-label="main">
+  <defs>
+    <marker id="chame-arrow-end" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="context-stroke" /></marker>
+    <marker id="chame-arrow-start" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 10 0 L 0 5 L 10 10 z" fill="context-stroke" /></marker>
+  </defs>
+  <rect x="0" y="0" width="720" height="480" fill="#fafbfc" />
+  <text id="title" opacity="1" x="360" y="36" fill="#1e293b" font-family="sans-serif" font-size="20" font-weight="700" text-anchor="middle" dominant-baseline="middle"><tspan x="360">不同优化器在训练集上的收敛曲线</tspan></text>
+  <text id="subtitle" opacity="1" x="360" y="62" fill="#64748b" font-family="sans-serif" font-size="12" font-weight="400" text-anchor="middle" dominant-baseline="middle"><tspan x="360">n = 5 seeds · mean loss over training epochs</tspan></text>
+  <rect id="plot" opacity="1" x="90" y="90" width="540" height="320" rx="0" fill="#ffffff" stroke="#e2e8f0" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" />
+  <line id="h0" opacity="1" x1="90" y1="410" x2="630" y2="410" stroke="#e2e8f0" stroke-width="1" stroke-linecap="butt" />
+  <line id="h1" opacity="1" x1="90" y1="330" x2="630" y2="330" stroke="#e2e8f0" stroke-width="1" stroke-linecap="butt" />
+  <line id="h2" opacity="1" x1="90" y1="250" x2="630" y2="250" stroke="#e2e8f0" stroke-width="1" stroke-linecap="butt" />
+  <line id="h3" opacity="1" x1="90" y1="170" x2="630" y2="170" stroke="#e2e8f0" stroke-width="1" stroke-linecap="butt" />
+  <line id="h4" opacity="1" x1="90" y1="90" x2="630" y2="90" stroke="#e2e8f0" stroke-width="1" stroke-linecap="butt" />
+  <line id="v0" opacity="1" x1="90" y1="90" x2="90" y2="410" stroke="#e2e8f0" stroke-width="1" stroke-linecap="butt" />
+  <line id="v1" opacity="1" x1="198" y1="90" x2="198" y2="410" stroke="#e2e8f0" stroke-width="1" stroke-linecap="butt" />
+  <line id="v2" opacity="1" x1="306" y1="90" x2="306" y2="410" stroke="#e2e8f0" stroke-width="1" stroke-linecap="butt" />
+  <line id="v3" opacity="1" x1="414" y1="90" x2="414" y2="410" stroke="#e2e8f0" stroke-width="1" stroke-linecap="butt" />
+  <line id="v4" opacity="1" x1="522" y1="90" x2="522" y2="410" stroke="#e2e8f0" stroke-width="1" stroke-linecap="butt" />
+  <line id="v5" opacity="1" x1="630" y1="90" x2="630" y2="410" stroke="#e2e8f0" stroke-width="1" stroke-linecap="butt" />
+  <line id="xAxis" opacity="1" x1="90" y1="410" x2="630" y2="410" stroke="#334155" stroke-width="2" stroke-linecap="square" />
+  <line id="yAxis" opacity="1" x1="90" y1="90" x2="90" y2="410" stroke="#334155" stroke-width="2" stroke-linecap="square" />
+  <text id="y0" opacity="1" x="82" y="410" fill="#64748b" font-family="sans-serif" font-size="11" font-weight="400" text-anchor="end" dominant-baseline="middle"><tspan x="82">0.0</tspan></text>
+  <text id="y1" opacity="1" x="82" y="330" fill="#64748b" font-family="sans-serif" font-size="11" font-weight="400" text-anchor="end" dominant-baseline="middle"><tspan x="82">0.6</tspan></text>
+  <text id="y2" opacity="1" x="82" y="250" fill="#64748b" font-family="sans-serif" font-size="11" font-weight="400" text-anchor="end" dominant-baseline="middle"><tspan x="82">1.2</tspan></text>
+  <text id="y3" opacity="1" x="82" y="170" fill="#64748b" font-family="sans-serif" font-size="11" font-weight="400" text-anchor="end" dominant-baseline="middle"><tspan x="82">1.8</tspan></text>
+  <text id="y4" opacity="1" x="82" y="90" fill="#64748b" font-family="sans-serif" font-size="11" font-weight="400" text-anchor="end" dominant-baseline="middle"><tspan x="82">2.4</tspan></text>
+  <text id="x0" opacity="1" x="90" y="424" fill="#64748b" font-family="sans-serif" font-size="11" font-weight="400" text-anchor="middle" dominant-baseline="hanging"><tspan x="90">0</tspan></text>
+  <text id="x1" opacity="1" x="198" y="424" fill="#64748b" font-family="sans-serif" font-size="11" font-weight="400" text-anchor="middle" dominant-baseline="hanging"><tspan x="198">20</tspan></text>
+  <text id="x2" opacity="1" x="306" y="424" fill="#64748b" font-family="sans-serif" font-size="11" font-weight="400" text-anchor="middle" dominant-baseline="hanging"><tspan x="306">40</tspan></text>
+  <text id="x3" opacity="1" x="414" y="424" fill="#64748b" font-family="sans-serif" font-size="11" font-weight="400" text-anchor="middle" dominant-baseline="hanging"><tspan x="414">60</tspan></text>
+  <text id="x4" opacity="1" x="522" y="424" fill="#64748b" font-family="sans-serif" font-size="11" font-weight="400" text-anchor="middle" dominant-baseline="hanging"><tspan x="522">80</tspan></text>
+  <text id="x5" opacity="1" x="630" y="424" fill="#64748b" font-family="sans-serif" font-size="11" font-weight="400" text-anchor="middle" dominant-baseline="hanging"><tspan x="630">100</tspan></text>
+  <text id="xLabel" opacity="1" x="360" y="448" fill="#1e293b" font-family="sans-serif" font-size="13" font-weight="600" text-anchor="middle" dominant-baseline="middle"><tspan x="360">Epoch</tspan></text>
+  <text id="yLabel" opacity="1" transform="rotate(-90 36 251.3)" x="36" y="250" fill="#1e293b" font-family="sans-serif" font-size="13" font-weight="600" text-anchor="middle" dominant-baseline="middle"><tspan x="36">Loss</tspan></text>
+  <polyline id="seriesAdam" opacity="1" points="90,97 144,203 198,270 252,314 306,341 360,357 414,368 468,374 522,380 576,382 630,383" fill="none" stroke="#2563eb" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+  <circle id="adamP0" opacity="1" cx="90" cy="97" r="3.5" fill="#2563eb" stroke="none" />
+  <circle id="adamP1" opacity="1" cx="198" cy="270" r="3.5" fill="#2563eb" stroke="none" />
+  <circle id="adamP2" opacity="1" cx="306" cy="341" r="3.5" fill="#2563eb" stroke="none" />
+  <circle id="adamP3" opacity="1" cx="414" cy="368" r="3.5" fill="#2563eb" stroke="none" />
+  <circle id="adamP4" opacity="1" cx="522" cy="380" r="3.5" fill="#2563eb" stroke="none" />
+  <circle id="adamP5" opacity="1" cx="630" cy="383" r="3.5" fill="#2563eb" stroke="none" />
+  <polyline id="seriesSGD" opacity="1" points="90,90 144,137 198,183 252,221 306,253 360,279 414,301 468,317 522,330 576,341 630,349" fill="none" stroke="#dc2626" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+  <circle id="sgdP0" opacity="1" cx="90" cy="90" r="3.5" fill="#dc2626" stroke="none" />
+  <circle id="sgdP1" opacity="1" cx="198" cy="183" r="3.5" fill="#dc2626" stroke="none" />
+  <circle id="sgdP2" opacity="1" cx="306" cy="253" r="3.5" fill="#dc2626" stroke="none" />
+  <circle id="sgdP3" opacity="1" cx="414" cy="301" r="3.5" fill="#dc2626" stroke="none" />
+  <circle id="sgdP4" opacity="1" cx="522" cy="330" r="3.5" fill="#dc2626" stroke="none" />
+  <circle id="sgdP5" opacity="1" cx="630" cy="349" r="3.5" fill="#dc2626" stroke="none" />
+  <polyline id="seriesLion" opacity="1" points="90,87 144,163 198,230 252,283 306,320 360,343 414,360 468,370 522,378 576,383 630,387" fill="none" stroke="#059669" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+  <circle id="lionP0" opacity="1" cx="90" cy="87" r="3.5" fill="#059669" stroke="none" />
+  <circle id="lionP1" opacity="1" cx="198" cy="230" r="3.5" fill="#059669" stroke="none" />
+  <circle id="lionP2" opacity="1" cx="306" cy="320" r="3.5" fill="#059669" stroke="none" />
+  <circle id="lionP3" opacity="1" cx="414" cy="360" r="3.5" fill="#059669" stroke="none" />
+  <circle id="lionP4" opacity="1" cx="522" cy="378" r="3.5" fill="#059669" stroke="none" />
+  <circle id="lionP5" opacity="1" cx="630" cy="387" r="3.5" fill="#059669" stroke="none" />
+  <rect id="legendBox" opacity="0.95" x="470" y="105" width="148" height="78" rx="6" fill="#ffffff" stroke="#e2e8f0" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" />
+  <line id="legendLineA" opacity="1" x1="486" y1="125" x2="510" y2="125" stroke="#2563eb" stroke-width="3" stroke-linecap="round" />
+  <circle id="legendDotA" opacity="1" cx="498" cy="125" r="3.5" fill="#2563eb" stroke="none" />
+  <text id="legendTextA" opacity="1" x="518" y="125" fill="#1e293b" font-family="sans-serif" font-size="12" font-weight="400" text-anchor="start" dominant-baseline="middle"><tspan x="518">Adam</tspan></text>
+  <line id="legendLineB" opacity="1" x1="486" y1="147" x2="510" y2="147" stroke="#dc2626" stroke-width="3" stroke-linecap="round" />
+  <circle id="legendDotB" opacity="1" cx="498" cy="147" r="3.5" fill="#dc2626" stroke="none" />
+  <text id="legendTextB" opacity="1" x="518" y="147" fill="#1e293b" font-family="sans-serif" font-size="12" font-weight="400" text-anchor="start" dominant-baseline="middle"><tspan x="518">SGD</tspan></text>
+  <line id="legendLineC" opacity="1" x1="486" y1="169" x2="510" y2="169" stroke="#059669" stroke-width="3" stroke-linecap="round" />
+  <circle id="legendDotC" opacity="1" cx="498" cy="169" r="3.5" fill="#059669" stroke="none" />
+  <text id="legendTextC" opacity="1" x="518" y="169" fill="#1e293b" font-family="sans-serif" font-size="12" font-weight="400" text-anchor="start" dominant-baseline="middle"><tspan x="518">Lion</tspan></text>
+  <path id="arrowBest" opacity="1" d="M 600 400 L 620 392" fill="none" stroke="#64748b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="miter" />
+  <text id="bestNote" opacity="1" x="560" y="405" fill="#64748b" font-family="sans-serif" font-size="11" font-weight="400" text-anchor="end" dominant-baseline="middle"><tspan x="560">Lion final ≈ 0.17</tspan></text>
+  <text id="footnote" opacity="1" x="360" y="468" fill="#64748b" font-family="sans-serif" font-size="11" font-weight="400" text-anchor="middle" dominant-baseline="middle"><tspan x="360">三种优化器的训练损失对比（示意数据）</tspan></text>
+</svg>

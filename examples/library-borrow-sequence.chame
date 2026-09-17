@@ -1,0 +1,1438 @@
+// 借书时序图：简化业务流程，不展开并发、事务和基础设施异常。
+// 虚线使用 path 的重复 move / line 绘制；无需扩展语言。
+// 运行：pnpm cli examples/library-borrow-sequence.chame examples/library-borrow-sequence.svg
+let ink "#172033"
+let muted "#64748B"
+let blue "#3B82F6"
+let teal "#0F9F91"
+let amber "#E99A18"
+let rose "#E45B78"
+
+canvas borrowSequence {
+  size (1500, 1200)
+  background "#F7F9FC"
+  text title {
+    content "图书管理系统 · 借书时序图"
+    at (750, 48)
+    color ink
+    font-size 32
+    align center
+    vertical-align middle
+    font-weight 700
+  }
+  text subtitle {
+    content "扫描证件与图书 → 校验借阅条件 → 办理借阅或返回拒绝原因"
+    at (750, 87)
+    color muted
+    font-size 17
+    align center
+    vertical-align middle
+  }
+  rect altFrame {
+    at (360, 650)
+    size (1060, 412)
+    fill "#FFFFFF"
+    stroke "#A7B4C8" 1.5
+  }
+  rect reader {
+    at (45, 135)
+    size (210, 64)
+    fill "#FFFFFF"
+    stroke blue 2
+    round 10
+  }
+  text readerTitle {
+    content "读者"
+    at (150, 167)
+    color ink
+    font-size 22
+    align center
+    vertical-align middle
+  }
+  path readerLife {
+    move (150, 199)
+    line (150, 206)
+    move (150, 213)
+    line (150, 220)
+    move (150, 227)
+    line (150, 234)
+    move (150, 241)
+    line (150, 248)
+    move (150, 255)
+    line (150, 262)
+    move (150, 269)
+    line (150, 276)
+    move (150, 283)
+    line (150, 290)
+    move (150, 297)
+    line (150, 304)
+    move (150, 311)
+    line (150, 318)
+    move (150, 325)
+    line (150, 332)
+    move (150, 339)
+    line (150, 346)
+    move (150, 353)
+    line (150, 360)
+    move (150, 367)
+    line (150, 374)
+    move (150, 381)
+    line (150, 388)
+    move (150, 395)
+    line (150, 402)
+    move (150, 409)
+    line (150, 416)
+    move (150, 423)
+    line (150, 430)
+    move (150, 437)
+    line (150, 444)
+    move (150, 451)
+    line (150, 458)
+    move (150, 465)
+    line (150, 472)
+    move (150, 479)
+    line (150, 486)
+    move (150, 493)
+    line (150, 500)
+    move (150, 507)
+    line (150, 514)
+    move (150, 521)
+    line (150, 528)
+    move (150, 535)
+    line (150, 542)
+    move (150, 549)
+    line (150, 556)
+    move (150, 563)
+    line (150, 570)
+    move (150, 577)
+    line (150, 584)
+    move (150, 591)
+    line (150, 598)
+    move (150, 605)
+    line (150, 612)
+    move (150, 619)
+    line (150, 626)
+    move (150, 633)
+    line (150, 640)
+    move (150, 647)
+    line (150, 654)
+    move (150, 661)
+    line (150, 668)
+    move (150, 675)
+    line (150, 682)
+    move (150, 689)
+    line (150, 696)
+    move (150, 703)
+    line (150, 710)
+    move (150, 717)
+    line (150, 724)
+    move (150, 731)
+    line (150, 738)
+    move (150, 745)
+    line (150, 752)
+    move (150, 759)
+    line (150, 766)
+    move (150, 773)
+    line (150, 780)
+    move (150, 787)
+    line (150, 794)
+    move (150, 801)
+    line (150, 808)
+    move (150, 815)
+    line (150, 822)
+    move (150, 829)
+    line (150, 836)
+    move (150, 843)
+    line (150, 850)
+    move (150, 857)
+    line (150, 864)
+    move (150, 871)
+    line (150, 878)
+    move (150, 885)
+    line (150, 892)
+    move (150, 899)
+    line (150, 906)
+    move (150, 913)
+    line (150, 920)
+    move (150, 927)
+    line (150, 934)
+    move (150, 941)
+    line (150, 948)
+    move (150, 955)
+    line (150, 962)
+    move (150, 969)
+    line (150, 976)
+    move (150, 983)
+    line (150, 990)
+    move (150, 997)
+    line (150, 1004)
+    move (150, 1011)
+    line (150, 1018)
+    move (150, 1025)
+    line (150, 1032)
+    move (150, 1039)
+    line (150, 1046)
+    move (150, 1053)
+    line (150, 1060)
+    move (150, 1067)
+    line (150, 1074)
+    move (150, 1081)
+    line (150, 1088)
+    move (150, 1095)
+    line (150, 1102)
+    move (150, 1109)
+    line (150, 1116)
+    move (150, 1123)
+    line (150, 1130)
+    stroke "#B1BDCE" 1.5
+  }
+  rect terminal {
+    at (345, 135)
+    size (210, 64)
+    fill "#FFFFFF"
+    stroke blue 2
+    round 10
+  }
+  text terminalTitle {
+    content "借阅终端"
+    at (450, 167)
+    color ink
+    font-size 22
+    align center
+    vertical-align middle
+  }
+  path terminalLife {
+    move (450, 199)
+    line (450, 206)
+    move (450, 213)
+    line (450, 220)
+    move (450, 227)
+    line (450, 234)
+    move (450, 241)
+    line (450, 248)
+    move (450, 255)
+    line (450, 262)
+    move (450, 269)
+    line (450, 276)
+    move (450, 283)
+    line (450, 290)
+    move (450, 297)
+    line (450, 304)
+    move (450, 311)
+    line (450, 318)
+    move (450, 325)
+    line (450, 332)
+    move (450, 339)
+    line (450, 346)
+    move (450, 353)
+    line (450, 360)
+    move (450, 367)
+    line (450, 374)
+    move (450, 381)
+    line (450, 388)
+    move (450, 395)
+    line (450, 402)
+    move (450, 409)
+    line (450, 416)
+    move (450, 423)
+    line (450, 430)
+    move (450, 437)
+    line (450, 444)
+    move (450, 451)
+    line (450, 458)
+    move (450, 465)
+    line (450, 472)
+    move (450, 479)
+    line (450, 486)
+    move (450, 493)
+    line (450, 500)
+    move (450, 507)
+    line (450, 514)
+    move (450, 521)
+    line (450, 528)
+    move (450, 535)
+    line (450, 542)
+    move (450, 549)
+    line (450, 556)
+    move (450, 563)
+    line (450, 570)
+    move (450, 577)
+    line (450, 584)
+    move (450, 591)
+    line (450, 598)
+    move (450, 605)
+    line (450, 612)
+    move (450, 619)
+    line (450, 626)
+    move (450, 633)
+    line (450, 640)
+    move (450, 647)
+    line (450, 654)
+    move (450, 661)
+    line (450, 668)
+    move (450, 675)
+    line (450, 682)
+    move (450, 689)
+    line (450, 696)
+    move (450, 703)
+    line (450, 710)
+    move (450, 717)
+    line (450, 724)
+    move (450, 731)
+    line (450, 738)
+    move (450, 745)
+    line (450, 752)
+    move (450, 759)
+    line (450, 766)
+    move (450, 773)
+    line (450, 780)
+    move (450, 787)
+    line (450, 794)
+    move (450, 801)
+    line (450, 808)
+    move (450, 815)
+    line (450, 822)
+    move (450, 829)
+    line (450, 836)
+    move (450, 843)
+    line (450, 850)
+    move (450, 857)
+    line (450, 864)
+    move (450, 871)
+    line (450, 878)
+    move (450, 885)
+    line (450, 892)
+    move (450, 899)
+    line (450, 906)
+    move (450, 913)
+    line (450, 920)
+    move (450, 927)
+    line (450, 934)
+    move (450, 941)
+    line (450, 948)
+    move (450, 955)
+    line (450, 962)
+    move (450, 969)
+    line (450, 976)
+    move (450, 983)
+    line (450, 990)
+    move (450, 997)
+    line (450, 1004)
+    move (450, 1011)
+    line (450, 1018)
+    move (450, 1025)
+    line (450, 1032)
+    move (450, 1039)
+    line (450, 1046)
+    move (450, 1053)
+    line (450, 1060)
+    move (450, 1067)
+    line (450, 1074)
+    move (450, 1081)
+    line (450, 1088)
+    move (450, 1095)
+    line (450, 1102)
+    move (450, 1109)
+    line (450, 1116)
+    move (450, 1123)
+    line (450, 1130)
+    stroke "#B1BDCE" 1.5
+  }
+  rect service {
+    at (675, 135)
+    size (210, 64)
+    fill "#FFFFFF"
+    stroke teal 2
+    round 10
+  }
+  text serviceTitle {
+    content "借阅服务"
+    at (780, 167)
+    color ink
+    font-size 22
+    align center
+    vertical-align middle
+  }
+  path serviceLife {
+    move (780, 199)
+    line (780, 206)
+    move (780, 213)
+    line (780, 220)
+    move (780, 227)
+    line (780, 234)
+    move (780, 241)
+    line (780, 248)
+    move (780, 255)
+    line (780, 262)
+    move (780, 269)
+    line (780, 276)
+    move (780, 283)
+    line (780, 290)
+    move (780, 297)
+    line (780, 304)
+    move (780, 311)
+    line (780, 318)
+    move (780, 325)
+    line (780, 332)
+    move (780, 339)
+    line (780, 346)
+    move (780, 353)
+    line (780, 360)
+    move (780, 367)
+    line (780, 374)
+    move (780, 381)
+    line (780, 388)
+    move (780, 395)
+    line (780, 402)
+    move (780, 409)
+    line (780, 416)
+    move (780, 423)
+    line (780, 430)
+    move (780, 437)
+    line (780, 444)
+    move (780, 451)
+    line (780, 458)
+    move (780, 465)
+    line (780, 472)
+    move (780, 479)
+    line (780, 486)
+    move (780, 493)
+    line (780, 500)
+    move (780, 507)
+    line (780, 514)
+    move (780, 521)
+    line (780, 528)
+    move (780, 535)
+    line (780, 542)
+    move (780, 549)
+    line (780, 556)
+    move (780, 563)
+    line (780, 570)
+    move (780, 577)
+    line (780, 584)
+    move (780, 591)
+    line (780, 598)
+    move (780, 605)
+    line (780, 612)
+    move (780, 619)
+    line (780, 626)
+    move (780, 633)
+    line (780, 640)
+    move (780, 647)
+    line (780, 654)
+    move (780, 661)
+    line (780, 668)
+    move (780, 675)
+    line (780, 682)
+    move (780, 689)
+    line (780, 696)
+    move (780, 703)
+    line (780, 710)
+    move (780, 717)
+    line (780, 724)
+    move (780, 731)
+    line (780, 738)
+    move (780, 745)
+    line (780, 752)
+    move (780, 759)
+    line (780, 766)
+    move (780, 773)
+    line (780, 780)
+    move (780, 787)
+    line (780, 794)
+    move (780, 801)
+    line (780, 808)
+    move (780, 815)
+    line (780, 822)
+    move (780, 829)
+    line (780, 836)
+    move (780, 843)
+    line (780, 850)
+    move (780, 857)
+    line (780, 864)
+    move (780, 871)
+    line (780, 878)
+    move (780, 885)
+    line (780, 892)
+    move (780, 899)
+    line (780, 906)
+    move (780, 913)
+    line (780, 920)
+    move (780, 927)
+    line (780, 934)
+    move (780, 941)
+    line (780, 948)
+    move (780, 955)
+    line (780, 962)
+    move (780, 969)
+    line (780, 976)
+    move (780, 983)
+    line (780, 990)
+    move (780, 997)
+    line (780, 1004)
+    move (780, 1011)
+    line (780, 1018)
+    move (780, 1025)
+    line (780, 1032)
+    move (780, 1039)
+    line (780, 1046)
+    move (780, 1053)
+    line (780, 1060)
+    move (780, 1067)
+    line (780, 1074)
+    move (780, 1081)
+    line (780, 1088)
+    move (780, 1095)
+    line (780, 1102)
+    move (780, 1109)
+    line (780, 1116)
+    move (780, 1123)
+    line (780, 1130)
+    stroke "#B1BDCE" 1.5
+  }
+  rect catalog {
+    at (975, 135)
+    size (210, 64)
+    fill "#FFFFFF"
+    stroke amber 2
+    round 10
+  }
+  text catalogTitle {
+    content "馆藏目录"
+    at (1080, 167)
+    color ink
+    font-size 22
+    align center
+    vertical-align middle
+  }
+  path catalogLife {
+    move (1080, 199)
+    line (1080, 206)
+    move (1080, 213)
+    line (1080, 220)
+    move (1080, 227)
+    line (1080, 234)
+    move (1080, 241)
+    line (1080, 248)
+    move (1080, 255)
+    line (1080, 262)
+    move (1080, 269)
+    line (1080, 276)
+    move (1080, 283)
+    line (1080, 290)
+    move (1080, 297)
+    line (1080, 304)
+    move (1080, 311)
+    line (1080, 318)
+    move (1080, 325)
+    line (1080, 332)
+    move (1080, 339)
+    line (1080, 346)
+    move (1080, 353)
+    line (1080, 360)
+    move (1080, 367)
+    line (1080, 374)
+    move (1080, 381)
+    line (1080, 388)
+    move (1080, 395)
+    line (1080, 402)
+    move (1080, 409)
+    line (1080, 416)
+    move (1080, 423)
+    line (1080, 430)
+    move (1080, 437)
+    line (1080, 444)
+    move (1080, 451)
+    line (1080, 458)
+    move (1080, 465)
+    line (1080, 472)
+    move (1080, 479)
+    line (1080, 486)
+    move (1080, 493)
+    line (1080, 500)
+    move (1080, 507)
+    line (1080, 514)
+    move (1080, 521)
+    line (1080, 528)
+    move (1080, 535)
+    line (1080, 542)
+    move (1080, 549)
+    line (1080, 556)
+    move (1080, 563)
+    line (1080, 570)
+    move (1080, 577)
+    line (1080, 584)
+    move (1080, 591)
+    line (1080, 598)
+    move (1080, 605)
+    line (1080, 612)
+    move (1080, 619)
+    line (1080, 626)
+    move (1080, 633)
+    line (1080, 640)
+    move (1080, 647)
+    line (1080, 654)
+    move (1080, 661)
+    line (1080, 668)
+    move (1080, 675)
+    line (1080, 682)
+    move (1080, 689)
+    line (1080, 696)
+    move (1080, 703)
+    line (1080, 710)
+    move (1080, 717)
+    line (1080, 724)
+    move (1080, 731)
+    line (1080, 738)
+    move (1080, 745)
+    line (1080, 752)
+    move (1080, 759)
+    line (1080, 766)
+    move (1080, 773)
+    line (1080, 780)
+    move (1080, 787)
+    line (1080, 794)
+    move (1080, 801)
+    line (1080, 808)
+    move (1080, 815)
+    line (1080, 822)
+    move (1080, 829)
+    line (1080, 836)
+    move (1080, 843)
+    line (1080, 850)
+    move (1080, 857)
+    line (1080, 864)
+    move (1080, 871)
+    line (1080, 878)
+    move (1080, 885)
+    line (1080, 892)
+    move (1080, 899)
+    line (1080, 906)
+    move (1080, 913)
+    line (1080, 920)
+    move (1080, 927)
+    line (1080, 934)
+    move (1080, 941)
+    line (1080, 948)
+    move (1080, 955)
+    line (1080, 962)
+    move (1080, 969)
+    line (1080, 976)
+    move (1080, 983)
+    line (1080, 990)
+    move (1080, 997)
+    line (1080, 1004)
+    move (1080, 1011)
+    line (1080, 1018)
+    move (1080, 1025)
+    line (1080, 1032)
+    move (1080, 1039)
+    line (1080, 1046)
+    move (1080, 1053)
+    line (1080, 1060)
+    move (1080, 1067)
+    line (1080, 1074)
+    move (1080, 1081)
+    line (1080, 1088)
+    move (1080, 1095)
+    line (1080, 1102)
+    move (1080, 1109)
+    line (1080, 1116)
+    move (1080, 1123)
+    line (1080, 1130)
+    stroke "#B1BDCE" 1.5
+  }
+  rect account {
+    at (1245, 135)
+    size (210, 64)
+    fill "#FFFFFF"
+    stroke rose 2
+    round 10
+  }
+  text accountTitle {
+    content "读者账户"
+    at (1350, 167)
+    color ink
+    font-size 22
+    align center
+    vertical-align middle
+  }
+  path accountLife {
+    move (1350, 199)
+    line (1350, 206)
+    move (1350, 213)
+    line (1350, 220)
+    move (1350, 227)
+    line (1350, 234)
+    move (1350, 241)
+    line (1350, 248)
+    move (1350, 255)
+    line (1350, 262)
+    move (1350, 269)
+    line (1350, 276)
+    move (1350, 283)
+    line (1350, 290)
+    move (1350, 297)
+    line (1350, 304)
+    move (1350, 311)
+    line (1350, 318)
+    move (1350, 325)
+    line (1350, 332)
+    move (1350, 339)
+    line (1350, 346)
+    move (1350, 353)
+    line (1350, 360)
+    move (1350, 367)
+    line (1350, 374)
+    move (1350, 381)
+    line (1350, 388)
+    move (1350, 395)
+    line (1350, 402)
+    move (1350, 409)
+    line (1350, 416)
+    move (1350, 423)
+    line (1350, 430)
+    move (1350, 437)
+    line (1350, 444)
+    move (1350, 451)
+    line (1350, 458)
+    move (1350, 465)
+    line (1350, 472)
+    move (1350, 479)
+    line (1350, 486)
+    move (1350, 493)
+    line (1350, 500)
+    move (1350, 507)
+    line (1350, 514)
+    move (1350, 521)
+    line (1350, 528)
+    move (1350, 535)
+    line (1350, 542)
+    move (1350, 549)
+    line (1350, 556)
+    move (1350, 563)
+    line (1350, 570)
+    move (1350, 577)
+    line (1350, 584)
+    move (1350, 591)
+    line (1350, 598)
+    move (1350, 605)
+    line (1350, 612)
+    move (1350, 619)
+    line (1350, 626)
+    move (1350, 633)
+    line (1350, 640)
+    move (1350, 647)
+    line (1350, 654)
+    move (1350, 661)
+    line (1350, 668)
+    move (1350, 675)
+    line (1350, 682)
+    move (1350, 689)
+    line (1350, 696)
+    move (1350, 703)
+    line (1350, 710)
+    move (1350, 717)
+    line (1350, 724)
+    move (1350, 731)
+    line (1350, 738)
+    move (1350, 745)
+    line (1350, 752)
+    move (1350, 759)
+    line (1350, 766)
+    move (1350, 773)
+    line (1350, 780)
+    move (1350, 787)
+    line (1350, 794)
+    move (1350, 801)
+    line (1350, 808)
+    move (1350, 815)
+    line (1350, 822)
+    move (1350, 829)
+    line (1350, 836)
+    move (1350, 843)
+    line (1350, 850)
+    move (1350, 857)
+    line (1350, 864)
+    move (1350, 871)
+    line (1350, 878)
+    move (1350, 885)
+    line (1350, 892)
+    move (1350, 899)
+    line (1350, 906)
+    move (1350, 913)
+    line (1350, 920)
+    move (1350, 927)
+    line (1350, 934)
+    move (1350, 941)
+    line (1350, 948)
+    move (1350, 955)
+    line (1350, 962)
+    move (1350, 969)
+    line (1350, 976)
+    move (1350, 983)
+    line (1350, 990)
+    move (1350, 997)
+    line (1350, 1004)
+    move (1350, 1011)
+    line (1350, 1018)
+    move (1350, 1025)
+    line (1350, 1032)
+    move (1350, 1039)
+    line (1350, 1046)
+    move (1350, 1053)
+    line (1350, 1060)
+    move (1350, 1067)
+    line (1350, 1074)
+    move (1350, 1081)
+    line (1350, 1088)
+    move (1350, 1095)
+    line (1350, 1102)
+    move (1350, 1109)
+    line (1350, 1116)
+    move (1350, 1123)
+    line (1350, 1130)
+    stroke "#B1BDCE" 1.5
+  }
+  connect scan {
+    from (150, 263)
+    to (450, 263)
+    arrow end
+    color blue
+    width 2
+  }
+  text scanLabel {
+    content "1. 扫描读者证和图书条码"
+    at (300, 244)
+    color blue
+    font-size 16
+    align center
+    vertical-align middle
+  }
+  connect submit {
+    from (450, 335)
+    to (780, 335)
+    arrow end
+    color blue
+    width 2
+  }
+  text submitLabel {
+    content "2. 提交借阅(cardNo, barcode)"
+    at (615, 316)
+    color blue
+    font-size 16
+    align center
+    vertical-align middle
+  }
+  connect validate {
+    from (780, 408)
+    to (1350, 408)
+    arrow end
+    color rose
+    width 2
+  }
+  text validateLabel {
+    content "3. 校验账户与借阅额度(cardNo)"
+    at (1065, 389)
+    color rose
+    font-size 16
+    align center
+    vertical-align middle
+  }
+  path accountResult {
+    move (1350, 480)
+    line (1343, 480)
+    move (1336, 480)
+    line (1329, 480)
+    move (1322, 480)
+    line (1315, 480)
+    move (1308, 480)
+    line (1301, 480)
+    move (1294, 480)
+    line (1287, 480)
+    move (1280, 480)
+    line (1273, 480)
+    move (1266, 480)
+    line (1259, 480)
+    move (1252, 480)
+    line (1245, 480)
+    move (1238, 480)
+    line (1231, 480)
+    move (1224, 480)
+    line (1217, 480)
+    move (1210, 480)
+    line (1203, 480)
+    move (1196, 480)
+    line (1189, 480)
+    move (1182, 480)
+    line (1175, 480)
+    move (1168, 480)
+    line (1161, 480)
+    move (1154, 480)
+    line (1147, 480)
+    move (1140, 480)
+    line (1133, 480)
+    move (1126, 480)
+    line (1119, 480)
+    move (1112, 480)
+    line (1105, 480)
+    move (1098, 480)
+    line (1091, 480)
+    move (1084, 480)
+    line (1077, 480)
+    move (1070, 480)
+    line (1063, 480)
+    move (1056, 480)
+    line (1049, 480)
+    move (1042, 480)
+    line (1035, 480)
+    move (1028, 480)
+    line (1021, 480)
+    move (1014, 480)
+    line (1007, 480)
+    move (1000, 480)
+    line (993, 480)
+    move (986, 480)
+    line (979, 480)
+    move (972, 480)
+    line (965, 480)
+    move (958, 480)
+    line (951, 480)
+    move (944, 480)
+    line (937, 480)
+    move (930, 480)
+    line (923, 480)
+    move (916, 480)
+    line (909, 480)
+    move (902, 480)
+    line (895, 480)
+    move (888, 480)
+    line (881, 480)
+    move (874, 480)
+    line (867, 480)
+    move (860, 480)
+    line (853, 480)
+    move (846, 480)
+    line (839, 480)
+    move (832, 480)
+    line (825, 480)
+    move (818, 480)
+    line (811, 480)
+    move (804, 480)
+    line (797, 480)
+    move (790, 480)
+    line (783, 480)
+    stroke muted 1.5
+  }
+  polyline accountResultHead {
+    points [(790, 475), (780, 480), (790, 485)]
+    stroke muted 1.8
+  }
+  text accountResultLabel {
+    content "4. valid, remainingQuota"
+    at (1065, 461)
+    color muted
+    font-size 16
+    align center
+    vertical-align middle
+  }
+  connect query {
+    from (780, 550)
+    to (1080, 550)
+    arrow end
+    color amber
+    width 2
+  }
+  text queryLabel {
+    content "5. 查询副本状态(barcode)"
+    at (930, 531)
+    color amber
+    font-size 16
+    align center
+    vertical-align middle
+  }
+  path copyResult {
+    move (1080, 620)
+    line (1073, 620)
+    move (1066, 620)
+    line (1059, 620)
+    move (1052, 620)
+    line (1045, 620)
+    move (1038, 620)
+    line (1031, 620)
+    move (1024, 620)
+    line (1017, 620)
+    move (1010, 620)
+    line (1003, 620)
+    move (996, 620)
+    line (989, 620)
+    move (982, 620)
+    line (975, 620)
+    move (968, 620)
+    line (961, 620)
+    move (954, 620)
+    line (947, 620)
+    move (940, 620)
+    line (933, 620)
+    move (926, 620)
+    line (919, 620)
+    move (912, 620)
+    line (905, 620)
+    move (898, 620)
+    line (891, 620)
+    move (884, 620)
+    line (877, 620)
+    move (870, 620)
+    line (863, 620)
+    move (856, 620)
+    line (849, 620)
+    move (842, 620)
+    line (835, 620)
+    move (828, 620)
+    line (821, 620)
+    move (814, 620)
+    line (807, 620)
+    move (800, 620)
+    line (793, 620)
+    move (786, 620)
+    line (780, 620)
+    stroke muted 1.5
+  }
+  polyline copyResultHead {
+    points [(790, 615), (780, 620), (790, 625)]
+    stroke muted 1.8
+  }
+  text copyResultLabel {
+    content "6. available"
+    at (930, 601)
+    color muted
+    font-size 16
+    align center
+    vertical-align middle
+  }
+  rect altTab {
+    at (360, 650)
+    size (65, 38)
+    fill "#FFF5DB"
+    stroke "#A7B4C8" 1.5
+  }
+  text altLabel {
+    content "alt"
+    at (392, 669)
+    color ink
+    font-size 19
+    align center
+    vertical-align middle
+  }
+  text guard {
+    content "[账户有效 且 剩余额度 > 0 且 副本可借]"
+    at (447, 672)
+    color ink
+    font-size 17
+    align left
+    vertical-align middle
+  }
+  connect markLoaned {
+    from (780, 738)
+    to (1080, 738)
+    arrow end
+    color teal
+    width 2
+  }
+  text markLoanedLabel {
+    content "7. 标记副本为借出"
+    at (930, 719)
+    color teal
+    font-size 16
+    align center
+    vertical-align middle
+  }
+  path marked {
+    move (1080, 802)
+    line (1073, 802)
+    move (1066, 802)
+    line (1059, 802)
+    move (1052, 802)
+    line (1045, 802)
+    move (1038, 802)
+    line (1031, 802)
+    move (1024, 802)
+    line (1017, 802)
+    move (1010, 802)
+    line (1003, 802)
+    move (996, 802)
+    line (989, 802)
+    move (982, 802)
+    line (975, 802)
+    move (968, 802)
+    line (961, 802)
+    move (954, 802)
+    line (947, 802)
+    move (940, 802)
+    line (933, 802)
+    move (926, 802)
+    line (919, 802)
+    move (912, 802)
+    line (905, 802)
+    move (898, 802)
+    line (891, 802)
+    move (884, 802)
+    line (877, 802)
+    move (870, 802)
+    line (863, 802)
+    move (856, 802)
+    line (849, 802)
+    move (842, 802)
+    line (835, 802)
+    move (828, 802)
+    line (821, 802)
+    move (814, 802)
+    line (807, 802)
+    move (800, 802)
+    line (793, 802)
+    move (786, 802)
+    line (780, 802)
+    stroke muted 1.5
+  }
+  polyline markedHead {
+    points [(790, 797), (780, 802), (790, 807)]
+    stroke muted 1.8
+  }
+  text markedLabel {
+    content "8. 更新完成"
+    at (930, 783)
+    color muted
+    font-size 16
+    align center
+    vertical-align middle
+  }
+  polyline createLoan {
+    points [(780, 850), (835, 850), (835, 892), (780, 892)]
+    stroke teal 2
+  }
+  polygon createLoanHead {
+    points [(780, 892), (790, 887), (790, 897)]
+    fill teal
+  }
+  text createLoanLabel {
+    content "9. 创建 Loan，记录读者、副本与到期日"
+    at (854, 866)
+    color teal
+    font-size 16
+    align left
+    vertical-align middle
+  }
+  path success {
+    move (780, 948)
+    line (773, 948)
+    move (766, 948)
+    line (759, 948)
+    move (752, 948)
+    line (745, 948)
+    move (738, 948)
+    line (731, 948)
+    move (724, 948)
+    line (717, 948)
+    move (710, 948)
+    line (703, 948)
+    move (696, 948)
+    line (689, 948)
+    move (682, 948)
+    line (675, 948)
+    move (668, 948)
+    line (661, 948)
+    move (654, 948)
+    line (647, 948)
+    move (640, 948)
+    line (633, 948)
+    move (626, 948)
+    line (619, 948)
+    move (612, 948)
+    line (605, 948)
+    move (598, 948)
+    line (591, 948)
+    move (584, 948)
+    line (577, 948)
+    move (570, 948)
+    line (563, 948)
+    move (556, 948)
+    line (549, 948)
+    move (542, 948)
+    line (535, 948)
+    move (528, 948)
+    line (521, 948)
+    move (514, 948)
+    line (507, 948)
+    move (500, 948)
+    line (493, 948)
+    move (486, 948)
+    line (479, 948)
+    move (472, 948)
+    line (465, 948)
+    move (458, 948)
+    line (451, 948)
+    stroke teal 1.5
+  }
+  polyline successHead {
+    points [(460, 943), (450, 948), (460, 953)]
+    stroke teal 1.8
+  }
+  text successLabel {
+    content "10a. 返回借阅凭证与到期日"
+    at (615, 929)
+    color teal
+    font-size 16
+    align center
+    vertical-align middle
+  }
+  path branchDivider {
+    move (360, 978)
+    line (367, 978)
+    move (374, 978)
+    line (381, 978)
+    move (388, 978)
+    line (395, 978)
+    move (402, 978)
+    line (409, 978)
+    move (416, 978)
+    line (423, 978)
+    move (430, 978)
+    line (437, 978)
+    move (444, 978)
+    line (451, 978)
+    move (458, 978)
+    line (465, 978)
+    move (472, 978)
+    line (479, 978)
+    move (486, 978)
+    line (493, 978)
+    move (500, 978)
+    line (507, 978)
+    move (514, 978)
+    line (521, 978)
+    move (528, 978)
+    line (535, 978)
+    move (542, 978)
+    line (549, 978)
+    move (556, 978)
+    line (563, 978)
+    move (570, 978)
+    line (577, 978)
+    move (584, 978)
+    line (591, 978)
+    move (598, 978)
+    line (605, 978)
+    move (612, 978)
+    line (619, 978)
+    move (626, 978)
+    line (633, 978)
+    move (640, 978)
+    line (647, 978)
+    move (654, 978)
+    line (661, 978)
+    move (668, 978)
+    line (675, 978)
+    move (682, 978)
+    line (689, 978)
+    move (696, 978)
+    line (703, 978)
+    move (710, 978)
+    line (717, 978)
+    move (724, 978)
+    line (731, 978)
+    move (738, 978)
+    line (745, 978)
+    move (752, 978)
+    line (759, 978)
+    move (766, 978)
+    line (773, 978)
+    move (780, 978)
+    line (787, 978)
+    move (794, 978)
+    line (801, 978)
+    move (808, 978)
+    line (815, 978)
+    move (822, 978)
+    line (829, 978)
+    move (836, 978)
+    line (843, 978)
+    move (850, 978)
+    line (857, 978)
+    move (864, 978)
+    line (871, 978)
+    move (878, 978)
+    line (885, 978)
+    move (892, 978)
+    line (899, 978)
+    move (906, 978)
+    line (913, 978)
+    move (920, 978)
+    line (927, 978)
+    move (934, 978)
+    line (941, 978)
+    move (948, 978)
+    line (955, 978)
+    move (962, 978)
+    line (969, 978)
+    move (976, 978)
+    line (983, 978)
+    move (990, 978)
+    line (997, 978)
+    move (1004, 978)
+    line (1011, 978)
+    move (1018, 978)
+    line (1025, 978)
+    move (1032, 978)
+    line (1039, 978)
+    move (1046, 978)
+    line (1053, 978)
+    move (1060, 978)
+    line (1067, 978)
+    move (1074, 978)
+    line (1081, 978)
+    move (1088, 978)
+    line (1095, 978)
+    move (1102, 978)
+    line (1109, 978)
+    move (1116, 978)
+    line (1123, 978)
+    move (1130, 978)
+    line (1137, 978)
+    move (1144, 978)
+    line (1151, 978)
+    move (1158, 978)
+    line (1165, 978)
+    move (1172, 978)
+    line (1179, 978)
+    move (1186, 978)
+    line (1193, 978)
+    move (1200, 978)
+    line (1207, 978)
+    move (1214, 978)
+    line (1221, 978)
+    move (1228, 978)
+    line (1235, 978)
+    move (1242, 978)
+    line (1249, 978)
+    move (1256, 978)
+    line (1263, 978)
+    move (1270, 978)
+    line (1277, 978)
+    move (1284, 978)
+    line (1291, 978)
+    move (1298, 978)
+    line (1305, 978)
+    move (1312, 978)
+    line (1319, 978)
+    move (1326, 978)
+    line (1333, 978)
+    move (1340, 978)
+    line (1347, 978)
+    move (1354, 978)
+    line (1361, 978)
+    move (1368, 978)
+    line (1375, 978)
+    move (1382, 978)
+    line (1389, 978)
+    move (1396, 978)
+    line (1403, 978)
+    move (1410, 978)
+    line (1417, 978)
+    stroke "#A7B4C8" 1.5
+  }
+  text elseGuard {
+    content "[else]"
+    at (382, 1002)
+    color rose
+    font-size 17
+    align left
+    vertical-align middle
+  }
+  path reject {
+    move (780, 1042)
+    line (773, 1042)
+    move (766, 1042)
+    line (759, 1042)
+    move (752, 1042)
+    line (745, 1042)
+    move (738, 1042)
+    line (731, 1042)
+    move (724, 1042)
+    line (717, 1042)
+    move (710, 1042)
+    line (703, 1042)
+    move (696, 1042)
+    line (689, 1042)
+    move (682, 1042)
+    line (675, 1042)
+    move (668, 1042)
+    line (661, 1042)
+    move (654, 1042)
+    line (647, 1042)
+    move (640, 1042)
+    line (633, 1042)
+    move (626, 1042)
+    line (619, 1042)
+    move (612, 1042)
+    line (605, 1042)
+    move (598, 1042)
+    line (591, 1042)
+    move (584, 1042)
+    line (577, 1042)
+    move (570, 1042)
+    line (563, 1042)
+    move (556, 1042)
+    line (549, 1042)
+    move (542, 1042)
+    line (535, 1042)
+    move (528, 1042)
+    line (521, 1042)
+    move (514, 1042)
+    line (507, 1042)
+    move (500, 1042)
+    line (493, 1042)
+    move (486, 1042)
+    line (479, 1042)
+    move (472, 1042)
+    line (465, 1042)
+    move (458, 1042)
+    line (451, 1042)
+    stroke rose 1.5
+  }
+  polyline rejectHead {
+    points [(460, 1037), (450, 1042), (460, 1047)]
+    stroke rose 1.8
+  }
+  text rejectLabel {
+    content "10b. 拒绝：账户无效 / 额度不足 / 副本不可借"
+    at (615, 1023)
+    color rose
+    font-size 16
+    align center
+    vertical-align middle
+  }
+  connect display {
+    from (450, 1110)
+    to (150, 1110)
+    arrow end
+    color blue
+    width 2
+  }
+  text displayLabel {
+    content "11. 显示结果"
+    at (300, 1091)
+    color blue
+    font-size 16
+    align center
+    vertical-align middle
+  }
+  text note {
+    content "简化业务示例 · 实线表示请求或操作，虚线箭头表示返回；10a 与 10b 二选一"
+    at (750, 1170)
+    color muted
+    font-size 14
+    align center
+    vertical-align middle
+  }
+}
+

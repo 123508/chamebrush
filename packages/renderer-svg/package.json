@@ -1,0 +1,36 @@
+{
+  "name": "@chamebrush/renderer-svg",
+  "version": "0.1.0",
+  "private": false,
+  "description": "SVG renderer for Chamebrush scenes",
+  "type": "module",
+  "license": "MIT",
+  "keywords": [
+    "chamebrush",
+    "svg",
+    "renderer",
+    "graphics"
+  ],
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsup src/index.ts --format esm --clean --sourcemap && tsc -p tsconfig.build.json",
+    "prepublishOnly": "pnpm build"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@chamebrush/core": "workspace:^"
+  }
+}

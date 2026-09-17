@@ -1,0 +1,175 @@
+// 极光音乐夜：用少量路径、几何图形和变换完成一张编辑风海报。
+let night "#11152B"
+let paper "#F5F0E8"
+let lime "#C7F36B"
+let violet "#9B87F5"
+let coral "#FF8066"
+let cyan "#6CE5E8"
+
+canvas auroraPoster {
+  size (1200, 800)
+  background night
+
+  // 背景中的轨道与色块建立纵深。
+  circle orbitOuter {
+    center (900, 390)
+    radius 285
+    fill none
+    stroke "#F5F0E82B" 2
+  }
+
+  circle orbitInner {
+    center (900, 390)
+    radius 198
+    fill none
+    stroke "#F5F0E81F" 2
+  }
+
+  ellipse glowViolet {
+    center (900, 390)
+    radius-x 235
+    radius-y 112
+    fill violet
+    opacity 0.9
+    origin center
+    rotate -18deg
+    shadow (0, 20) 42 "#00000055"
+  }
+
+  ellipse glowCyan {
+    center (930, 372)
+    radius-x 180
+    radius-y 76
+    fill cyan
+    opacity 0.9
+    origin center
+    rotate 24deg
+  }
+
+  ellipse core {
+    center (910, 388)
+    radius-x 124
+    radius-y 44
+    fill night
+    origin center
+    rotate 8deg
+  }
+
+  circle planet {
+    center (1054, 214)
+    radius 42
+    fill coral
+    shadow (0, 12) 24 "#00000044"
+  }
+
+  circle moon {
+    center (701, 554)
+    radius 18
+    fill lime
+  }
+
+  // 左侧信息采用清晰的编辑排版。
+  text eyebrow {
+    content "CHAMEBRUSH PRESENTS  /  06.21"
+    at (72, 72)
+    color lime
+    font "Avenir Next, sans-serif"
+    font-size 15
+    font-weight 700
+  }
+
+  text title {
+    content "AURORA\nAFTER DARK"
+    at (68, 142)
+    color paper
+    font "Avenir Next, sans-serif"
+    font-size 76
+    font-weight 700
+    line-height 0.92
+  }
+
+  path titleRule {
+    move (72, 326)
+    line (424, 326)
+    stroke coral 8
+    line-cap round
+  }
+
+  text description {
+    content "声音、光线与夏夜空气，\n在城市天台交汇。"
+    at (72, 372)
+    color "#C8CBD8"
+    font-size 20
+    line-height 1.55
+  }
+
+  group venueCard {
+    at (72, 548)
+
+    rect panel {
+      at (0, 0)
+      size (430, 168)
+      fill "#1B203B"
+      stroke "#FFFFFF24" 1
+      round 24
+      shadow (0, 18) 34 "#00000033"
+    }
+
+    circle marker {
+      center (42, 42)
+      radius 15
+      fill lime
+    }
+
+    text date {
+      content "FRI 21 JUN"
+      at (72, 42)
+      color paper
+      font-size 18
+      font-weight 700
+      vertical-align middle
+    }
+
+    text venue {
+      content "ROOFTOP 08 · SHANGHAI"
+      at (28, 91)
+      color "#AEB4CB"
+      font-size 15
+      font-weight 600
+    }
+
+    text time {
+      content "20:30 — LATE"
+      at (28, 130)
+      color coral
+      font-size 22
+      font-weight 700
+    }
+
+    text entry {
+      content "LIVE / VISUAL / OPEN AIR"
+      at (402, 130)
+      color "#AEB4CB"
+      font-size 12
+      align right
+    }
+  }
+
+  text index {
+    content "01"
+    at (1128, 716)
+    color paper
+    font-size 42
+    font-weight 700
+    align right
+  }
+
+  text note {
+    content "A DECLARATIVE POSTER"
+    at (1128, 756)
+    color "#8A90AA"
+    font-size 12
+    font-weight 600
+    align right
+  }
+}

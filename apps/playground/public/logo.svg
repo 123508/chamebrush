@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="logo">
+  <defs>
+    <marker id="chame-arrow-end" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="context-stroke" /></marker>
+    <marker id="chame-arrow-start" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 10 0 L 0 5 L 10 10 z" fill="context-stroke" /></marker>
+  </defs>
+
+  <path id="body" opacity="1" d="M 198 268 L 303 269 C 323 300 327 367 300 400 C 290 414 296 438 276 452 C 245 473 166 477 124 465 C 82 454 66 422 67 389 C 67 364 78 343 97 339 C 126 331 150 345 160 367 C 175 403 143 428 118 410 C 98 396 99 380 111 374 C 121 369 132 375 128 384 Q 126 388 124 385 C 126 380 120 376 115 380 C 106 386 110 398 122 403 C 141 412 161 394 151 374 C 143 356 119 345 102 354 C 89 361 83 371 87 388 C 94 414 116 433 141 438 C 163 443 188 437 201 425 C 213 413 193 371 187 346 C 178 312 184 288 198 268 Z" fill="#85CD86" stroke="#234C43" stroke-width="6" />
+  <ellipse id="belly" opacity="1" cx="251" cy="360" rx="46" ry="47" fill="#C4E8AA" stroke="none" />
+  <ellipse id="leftFoot" opacity="1" cx="207" cy="420" rx="30" ry="17" fill="#4BAA8B" stroke="#234C43" stroke-width="6" />
+  <ellipse id="rightFoot" opacity="1" cx="289" cy="420" rx="30" ry="18" fill="#4BAA8B" stroke="#234C43" stroke-width="6" />
+  <path id="head" opacity="1" d="M 166 162 C 181 146 207 148 227 132 C 239 123 241 110 249 112 C 257 114 257 130 268 137 C 286 149 308 146 330 167 C 355 191 359 229 340 254 C 319 283 283 298 249 298 C 210 298 173 282 153 255 C 132 225 140 186 166 162 Z" fill="#85CD86" stroke="#234C43" stroke-width="6" />
+  <path id="forehead" opacity="1" d="M 230 160 Q 244 149 248 130 Q 253 149 268 161 Q 249 155 230 160 Z" fill="#C4E8AA" stroke="none" />
+  <circle id="leftTurret" opacity="1" cx="181" cy="208" r="42" fill="#C4E8AA" stroke="#234C43" stroke-width="6" />
+  <circle id="rightTurret" opacity="1" cx="316" cy="208" r="42" fill="#C4E8AA" stroke="#234C43" stroke-width="6" />
+  <circle id="leftEye" opacity="1" cx="185" cy="211" r="29" fill="#FFF9E9" stroke="none" />
+  <circle id="rightEye" opacity="1" cx="312" cy="211" r="29" fill="#FFF9E9" stroke="none" />
+  <ellipse id="leftPupil" opacity="1" cx="191" cy="214" rx="13" ry="16" fill="#234C43" stroke="none" />
+  <ellipse id="rightPupil" opacity="1" cx="306" cy="214" rx="13" ry="16" fill="#234C43" stroke="none" />
+  <circle id="leftGlint" opacity="1" cx="195" cy="208" r="4.5" fill="#FFF9E9" stroke="none" />
+  <circle id="rightGlint" opacity="1" cx="310" cy="208" r="4.5" fill="#FFF9E9" stroke="none" />
+  <ellipse id="leftCheek" opacity="1" cx="184" cy="257" rx="12" ry="6" fill="#EDB69B" stroke="none" />
+  <ellipse id="rightCheek" opacity="1" cx="312" cy="257" rx="12" ry="6" fill="#EDB69B" stroke="none" />
+  <path id="smile" opacity="1" d="M 226 267 C 239 277 258 277 271 267" fill="transparent" stroke="#234C43" stroke-width="4" />
+  <circle id="leftNostril" opacity="1" cx="242" cy="247" r="2" fill="#234C43" stroke="none" />
+  <circle id="rightNostril" opacity="1" cx="255" cy="247" r="2" fill="#234C43" stroke="none" />
+  <path id="rightArm" opacity="1" d="M 313 296 C 337 293 361 303 359 320 C 357 337 342 344 327 336 Q 318 331 323 322 Q 327 316 336 320" fill="#85CD86" stroke="#234C43" stroke-width="6" />
+  <path id="brushHandle" opacity="1" d="M 356 241 L 375 246 L 318 421 Q 314 433 307 438 Q 305 429 309 417 Z" fill="#F58D74" stroke="#234C43" stroke-width="6" />
+  <path id="bristles" opacity="1" d="M 361 191 C 349 164 369 141 386 125 Q 400 112 402 96 C 425 127 432 166 404 203 Z" fill="#FFF9E9" stroke="#234C43" stroke-width="6" />
+  <path id="paint" opacity="1" d="M 359 164 C 364 148 379 132 386 125 Q 400 112 402 96 C 414 113 422 135 422 153 C 408 146 397 173 385 167 C 372 160 372 153 359 164 Z" fill="#F58D74" stroke="none" />
+  <path id="paintGlint" opacity="1" d="M 388 143 Q 398 133 402 122" fill="transparent" stroke="#FFDBB1" stroke-width="5" />
+  <path id="ferrule" opacity="1" d="M 357 189 L 407 205 L 381 251 L 349 241 Z" fill="#b85300" stroke="#234C43" stroke-width="6" />
+  <line id="ferruleBand" opacity="1" x1="354" y1="218" x2="394" y2="231" stroke="#234C43" stroke-width="4" />
+  <path id="leftArm" opacity="1" d="M 185 306 C 181 335 207 355 241 356 C 270 357 302 344 329 334 Q 341 329 337 319 Q 333 309 322 313 C 295 322 266 333 246 330 Q 224 328 218 314" fill="#85CD86" stroke="#234C43" stroke-width="6" />
+  <path id="fingers" opacity="1" d="M 321 324 L 335 319" fill="transparent" stroke="#234C43" stroke-width="3.5" />
+</svg>

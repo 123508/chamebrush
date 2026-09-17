@@ -1,0 +1,99 @@
+@top Document { LineBreak* (TopLevelStatement LineBreak*)* }
+
+TopLevelStatement {
+  LetDeclaration |
+  AnimationDeclaration |
+  ObjectDeclaration
+}
+
+LetDeclaration { LetKeyword LetName Expression }
+
+AnimationDeclaration { AnimationKeyword AnimationBody }
+
+AnimationBody { "{" LineBreak* CommandList? "}" }
+
+CommandList { Command (LineBreak+ Command)* LineBreak* }
+
+ObjectDeclaration { ObjectType ObjectName ObjectBody }
+
+ObjectBody { "{" LineBreak* ObjectMemberList? "}" }
+
+ObjectMemberList { ObjectMember (LineBreak+ ObjectMember)* LineBreak* }
+
+ObjectMember {
+  LetDeclaration |
+  ObjectDeclaration |
+  Command
+}
+
+Command { CommandName Expression* }
+
+LetName { Identifier }
+ObjectType { ObjectTypeIdentifier }
+ObjectName { Identifier }
+CommandName { Identifier }
+
+Expression {
+  BinaryExpression |
+  UnaryExpression |
+  Number |
+  String |
+  Boolean |
+  Reference |
+  TupleExpression |
+  ParenthesizedExpression |
+  ListExpression
+}
+
+BinaryExpression {
+  Expression !add ("+" | "-") Expression |
+  Expression !multiply ("*" | "/") Expression
+}
+
+UnaryExpression { !unary ("+" | "-") Expression }
+
+Boolean { TrueKeyword | FalseKeyword }
+
+Reference { Identifier ("." Identifier)* }
+
+TupleExpression { "(" Expression "," Expression ")" }
+
+ParenthesizedExpression { "(" Expression ")" }
+
+ListExpression {
+  "[" LineBreak* ListElements? "]"
+}
+
+ListElements { Expression (ListSeparator Expression)* ","? LineBreak* }
+
+ListSeparator { "," LineBreak* | LineBreak+ }
+
+@precedence {
+  unary @right,
+  multiply @left,
+  add @left
+}
+
+@external tokens identifierTokens from "./identifier-tokens" {
+  Identifier,
+  ObjectTypeIdentifier,
+  LetKeyword,
+  AnimationKeyword,
+  TrueKeyword,
+  FalseKeyword
+}
+
+@tokens {
+  spaces { $[ \t]+ }
+  LineBreak { "\r\n" | $[\r\n] }
+  LineComment { "//" ![\r\n]* }
+  BlockComment { "/*" (![*] | "*" ![/])* "*/" }
+
+  Number { (@digit+ ("." @digit*)? | "." @digit+) ("px" | "%" | "deg")? }
+  String { "\"" (!["\\\r\n] | "\\" _)* "\"" }
+
+  @precedence { LineComment BlockComment, "/" }
+  @precedence { Number, "." }
+}
+
+@skip { spaces | LineComment | BlockComment }

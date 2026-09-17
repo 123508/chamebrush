@@ -1,0 +1,262 @@
+// Chamebrush mascot: front-facing, hugging a brush, with a tapered tail curling from behind the feet.
+let ink "#234C43"
+let green "#85CD86"
+let pale "#C4E8AA"
+let jade "#4BAA8B"
+let cream "#FFF9E9"
+let coral "#F58D74"
+let brown "#b85300"
+
+canvas logo {
+  size (512, 512)
+
+  // The body continues behind both feet, bends left underneath them,
+  // and gradually narrows as the tail curls upward to its tip.
+  path body {
+    move (198, 268)
+    line (303, 269)
+    curve (323, 300) (327, 367) (300, 400)
+    curve (290, 414) (296, 438) (276, 452)
+    curve (245, 473) (166, 477) (124, 465)
+    curve (82, 454) (66, 422) (67, 389)
+    curve (67, 364) (78, 343) (97, 339)
+    curve (126, 331) (150, 345) (160, 367)
+    curve (175, 403) (143, 428) (118, 410)
+    curve (98, 396) (99, 380) (111, 374)
+    curve (121, 369) (132, 375) (128, 384)
+    quad (126, 388) (124, 385)
+    curve (126, 380) (120, 376) (115, 380)
+    curve (106, 386) (110, 398) (122, 403)
+    curve (141, 412) (161, 394) (151, 374)
+    curve (143, 356) (119, 345) (102, 354)
+    curve (89, 361) (83, 371) (87, 388)
+    curve (94, 414) (116, 433) (141, 438)
+    curve (163, 443) (188, 437) (201, 425)
+    curve (213, 413) (193, 371) (187, 346)
+    curve (178, 312) (184, 288) (198, 268)
+    close
+    fill green
+    stroke ink 6
+  }
+
+  ellipse belly {
+    center (251, 360)
+    radius-x 46
+    radius-y 47
+    fill pale
+  }
+
+  // Foreground feet cover both turns where the body flows into the tail.
+  ellipse leftFoot {
+    center (207, 420)
+    radius-x 30
+    radius-y 17
+    fill jade
+    stroke ink 6
+  }
+
+  ellipse rightFoot {
+    center (289, 420)
+    radius-x 30
+    radius-y 18
+    fill jade
+    stroke ink 6
+  }
+
+  // A soft casque and two projecting eye turrets form the head silhouette.
+  path head {
+    move (166, 162)
+    curve (181, 146) (207, 148) (227, 132)
+    curve (239, 123) (241, 110) (249, 112)
+    curve (257, 114) (257, 130) (268, 137)
+    curve (286, 149) (308, 146) (330, 167)
+    curve (355, 191) (359, 229) (340, 254)
+    curve (319, 283) (283, 298) (249, 298)
+    curve (210, 298) (173, 282) (153, 255)
+    curve (132, 225) (140, 186) (166, 162)
+    close
+    fill green
+    stroke ink 6
+  }
+
+  path forehead {
+    move (230, 160)
+    quad (244, 149) (248, 130)
+    quad (253, 149) (268, 161)
+    quad (249, 155) (230, 160)
+    close
+    fill pale
+  }
+
+  circle leftTurret {
+    center (181, 208)
+    radius 42
+    fill pale
+    stroke ink 6
+  }
+
+  circle rightTurret {
+    center (316, 208)
+    radius 42
+    fill pale
+    stroke ink 6
+  }
+
+  circle leftEye {
+    center (185, 211)
+    radius 29
+    fill cream
+  }
+
+  circle rightEye {
+    center (312, 211)
+    radius 29
+    fill cream
+  }
+
+  ellipse leftPupil {
+    center (191, 214)
+    radius-x 13
+    radius-y 16
+    fill ink
+  }
+
+  ellipse rightPupil {
+    center (306, 214)
+    radius-x 13
+    radius-y 16
+    fill ink
+  }
+
+  circle leftGlint {
+    center (195, 208)
+    radius 4.5
+    fill cream
+  }
+
+  circle rightGlint {
+    center (310, 208)
+    radius 4.5
+    fill cream
+  }
+
+  ellipse leftCheek {
+    center (184, 257)
+    radius-x 12
+    radius-y 6
+    fill "#EDB69B"
+  }
+
+  ellipse rightCheek {
+    center (312, 257)
+    radius-x 12
+    radius-y 6
+    fill "#EDB69B"
+  }
+
+  path smile {
+    move (226, 267)
+    curve (239, 277) (258, 277) (271, 267)
+    fill transparent
+    stroke ink 4
+  }
+
+  circle leftNostril {
+    center (242, 247)
+    radius 2
+    fill ink
+  }
+
+  circle rightNostril {
+    center (255, 247)
+    radius 2
+    fill ink
+  }
+
+  path rightArm {
+    move (313, 296)
+    curve (337, 293) (361, 303) (359, 320)
+    curve (357, 337) (342, 344) (327, 336)
+    quad (318, 331) (323, 322)
+    quad (327, 316) (336, 320)
+    fill green
+    stroke ink 6
+  }
+
+  // The brush rests in both hands and stays clear of the eyes.
+  path brushHandle {
+    move (356, 241)
+    line (375, 246)
+    line (318, 421)
+    quad (314, 433) (307, 438)
+    quad (305, 429) (309, 417)
+    close
+    fill coral
+    stroke ink 6
+  }
+
+  path bristles {
+    move (361, 191)
+    curve (349, 164) (369, 141) (386, 125)
+    quad (400, 112) (402, 96)
+    curve (425, 127) (432, 166) (404, 203)
+    close
+    fill cream
+    stroke ink 6
+  }
+
+  path paint {
+    move (359, 164)
+    curve (364, 148) (379, 132) (386, 125)
+    quad (400, 112) (402, 96)
+    curve (414, 113) (422, 135) (422, 153)
+    curve (408, 146) (397, 173) (385, 167)
+    curve (372, 160) (372, 153) (359, 164)
+    close
+    fill coral
+  }
+
+  path paintGlint {
+    move (388, 143)
+    quad (398, 133) (402, 122)
+    fill transparent
+    stroke "#FFDBB1" 5
+  }
+
+  path ferrule {
+    move (357, 189)
+    line (407, 205)
+    line (381, 251)
+    line (349, 241)
+    close
+    fill brown
+    stroke ink 6
+  }
+
+  line ferruleBand {
+    from (354, 218)
+    to (394, 231)
+    color ink
+    width 4
+  }
+  
+
+  path leftArm {
+    move (185, 306)
+    curve (181, 335) (207, 355) (241, 356)
+    curve (270, 357) (302, 344) (329, 334)
+    quad (341, 329) (337, 319)
+    quad (333, 309) (322, 313)
+    curve (295, 322) (266, 333) (246, 330)
+    quad (224, 328) (218, 314)
+    fill green
+    stroke ink 6
+  }
+
+  path fingers {
+    move (321, 324)
+    line (335, 319)
+    fill transparent
+    stroke ink 3.5
+  }
+}

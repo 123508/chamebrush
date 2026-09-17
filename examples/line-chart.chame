@@ -1,0 +1,497 @@
+let paper "#fafbfc"
+let ink "#1e293b"
+let axis "#334155"
+let grid "#e2e8f0"
+let seriesA "#2563eb"
+let seriesB "#dc2626"
+let seriesC "#059669"
+let muted "#64748b"
+
+canvas main {
+  size (720, 480)
+  background paper
+
+  // chart title
+  text title {
+    content "不同优化器在训练集上的收敛曲线"
+    at (360, 36)
+    color ink
+    font-size 20
+    font-weight 700
+    align center
+    vertical-align middle
+  }
+
+  text subtitle {
+    content "n = 5 seeds · mean loss over training epochs"
+    at (360, 62)
+    color muted
+    font-size 12
+    align center
+    vertical-align middle
+  }
+
+  // plot area background
+  rect plot {
+    at (90, 90)
+    size (540, 320)
+    fill "#ffffff"
+    stroke grid 1
+  }
+
+  // horizontal grid lines
+  // y mapping: 0.0 -> 410, 2.4 -> 90  (standard: small at bottom)
+  line h0 {
+    from (90, 410)
+    to (630, 410)
+    color grid
+    width 1
+  }
+  line h1 {
+    from (90, 330)
+    to (630, 330)
+    color grid
+    width 1
+  }
+  line h2 {
+    from (90, 250)
+    to (630, 250)
+    color grid
+    width 1
+  }
+  line h3 {
+    from (90, 170)
+    to (630, 170)
+    color grid
+    width 1
+  }
+  line h4 {
+    from (90, 90)
+    to (630, 90)
+    color grid
+    width 1
+  }
+
+  // vertical grid lines (epochs)
+  line v0 {
+    from (90, 90)
+    to (90, 410)
+    color grid
+    width 1
+  }
+  line v1 {
+    from (198, 90)
+    to (198, 410)
+    color grid
+    width 1
+  }
+  line v2 {
+    from (306, 90)
+    to (306, 410)
+    color grid
+    width 1
+  }
+  line v3 {
+    from (414, 90)
+    to (414, 410)
+    color grid
+    width 1
+  }
+  line v4 {
+    from (522, 90)
+    to (522, 410)
+    color grid
+    width 1
+  }
+  line v5 {
+    from (630, 90)
+    to (630, 410)
+    color grid
+    width 1
+  }
+
+  // axes
+  line xAxis {
+    from (90, 410)
+    to (630, 410)
+    color axis
+    width 2
+    line-cap square
+  }
+  line yAxis {
+    from (90, 90)
+    to (90, 410)
+    color axis
+    width 2
+    line-cap square
+  }
+
+  // y tick labels: 0.0 at bottom, 2.4 at top
+  text y0 {
+    content "0.0"
+    at (82, 410)
+    color muted
+    font-size 11
+    align right
+    vertical-align middle
+  }
+  text y1 {
+    content "0.6"
+    at (82, 330)
+    color muted
+    font-size 11
+    align right
+    vertical-align middle
+  }
+  text y2 {
+    content "1.2"
+    at (82, 250)
+    color muted
+    font-size 11
+    align right
+    vertical-align middle
+  }
+  text y3 {
+    content "1.8"
+    at (82, 170)
+    color muted
+    font-size 11
+    align right
+    vertical-align middle
+  }
+  text y4 {
+    content "2.4"
+    at (82, 90)
+    color muted
+    font-size 11
+    align right
+    vertical-align middle
+  }
+
+  // x tick labels
+  text x0 {
+    content "0"
+    at (90, 424)
+    color muted
+    font-size 11
+    align center
+    vertical-align top
+  }
+  text x1 {
+    content "20"
+    at (198, 424)
+    color muted
+    font-size 11
+    align center
+    vertical-align top
+  }
+  text x2 {
+    content "40"
+    at (306, 424)
+    color muted
+    font-size 11
+    align center
+    vertical-align top
+  }
+  text x3 {
+    content "60"
+    at (414, 424)
+    color muted
+    font-size 11
+    align center
+    vertical-align top
+  }
+  text x4 {
+    content "80"
+    at (522, 424)
+    color muted
+    font-size 11
+    align center
+    vertical-align top
+  }
+  text x5 {
+    content "100"
+    at (630, 424)
+    color muted
+    font-size 11
+    align center
+    vertical-align top
+  }
+
+  // axis titles
+  text xLabel {
+    content "Epoch"
+    at (360, 448)
+    color ink
+    font-size 13
+    font-weight 600
+    align center
+    vertical-align middle
+  }
+  text yLabel {
+    content "Loss"
+    at (36, 250)
+    color ink
+    font-size 13
+    font-weight 600
+    align center
+    vertical-align middle
+    origin center
+    rotate -90deg
+  }
+
+  // ========== series A: Adam ==========
+  // loss: 2.35, 1.55, 1.05, 0.72, 0.52, 0.40, 0.32, 0.27, 0.23, 0.21, 0.20
+  polyline seriesAdam {
+    points [
+      (90, 97)
+      (144, 203)
+      (198, 270)
+      (252, 314)
+      (306, 341)
+      (360, 357)
+      (414, 368)
+      (468, 374)
+      (522, 380)
+      (576, 382)
+      (630, 383)
+    ]
+    fill none
+    stroke seriesA 2.5
+    line-cap round
+    line-join round
+  }
+  circle adamP0 {
+    center (90, 97)
+    radius 3.5
+    fill seriesA
+  }
+  circle adamP1 {
+    center (198, 270)
+    radius 3.5
+    fill seriesA
+  }
+  circle adamP2 {
+    center (306, 341)
+    radius 3.5
+    fill seriesA
+  }
+  circle adamP3 {
+    center (414, 368)
+    radius 3.5
+    fill seriesA
+  }
+  circle adamP4 {
+    center (522, 380)
+    radius 3.5
+    fill seriesA
+  }
+  circle adamP5 {
+    center (630, 383)
+    radius 3.5
+    fill seriesA
+  }
+
+  // ========== series B: SGD ==========
+  // loss: 2.40, 2.05, 1.70, 1.42, 1.18, 0.98, 0.82, 0.70, 0.60, 0.52, 0.46
+  polyline seriesSGD {
+    points [
+      (90, 90)
+      (144, 137)
+      (198, 183)
+      (252, 221)
+      (306, 253)
+      (360, 279)
+      (414, 301)
+      (468, 317)
+      (522, 330)
+      (576, 341)
+      (630, 349)
+    ]
+    fill none
+    stroke seriesB 2.5
+    line-cap round
+    line-join round
+  }
+  circle sgdP0 {
+    center (90, 90)
+    radius 3.5
+    fill seriesB
+  }
+  circle sgdP1 {
+    center (198, 183)
+    radius 3.5
+    fill seriesB
+  }
+  circle sgdP2 {
+    center (306, 253)
+    radius 3.5
+    fill seriesB
+  }
+  circle sgdP3 {
+    center (414, 301)
+    radius 3.5
+    fill seriesB
+  }
+  circle sgdP4 {
+    center (522, 330)
+    radius 3.5
+    fill seriesB
+  }
+  circle sgdP5 {
+    center (630, 349)
+    radius 3.5
+    fill seriesB
+  }
+
+  // ========== series C: Lion ==========
+  // loss: 2.42, 1.85, 1.35, 0.95, 0.68, 0.50, 0.38, 0.30, 0.24, 0.20, 0.17
+  polyline seriesLion {
+    points [
+      (90, 87)
+      (144, 163)
+      (198, 230)
+      (252, 283)
+      (306, 320)
+      (360, 343)
+      (414, 360)
+      (468, 370)
+      (522, 378)
+      (576, 383)
+      (630, 387)
+    ]
+    fill none
+    stroke seriesC 2.5
+    line-cap round
+    line-join round
+  }
+  circle lionP0 {
+    center (90, 87)
+    radius 3.5
+    fill seriesC
+  }
+  circle lionP1 {
+    center (198, 230)
+    radius 3.5
+    fill seriesC
+  }
+  circle lionP2 {
+    center (306, 320)
+    radius 3.5
+    fill seriesC
+  }
+  circle lionP3 {
+    center (414, 360)
+    radius 3.5
+    fill seriesC
+  }
+  circle lionP4 {
+    center (522, 378)
+    radius 3.5
+    fill seriesC
+  }
+  circle lionP5 {
+    center (630, 387)
+    radius 3.5
+    fill seriesC
+  }
+
+  // ========== legend (top-right, curves descend so this is free) ==========
+  rect legendBox {
+    at (470, 105)
+    size (148, 78)
+    fill "#ffffff"
+    stroke grid 1
+    round 6
+    opacity 0.95
+  }
+
+  line legendLineA {
+    from (486, 125)
+    to (510, 125)
+    color seriesA
+    width 3
+    line-cap round
+  }
+  circle legendDotA {
+    center (498, 125)
+    radius 3.5
+    fill seriesA
+  }
+  text legendTextA {
+    content "Adam"
+    at (518, 125)
+    color ink
+    font-size 12
+    align left
+    vertical-align middle
+  }
+
+  line legendLineB {
+    from (486, 147)
+    to (510, 147)
+    color seriesB
+    width 3
+    line-cap round
+  }
+  circle legendDotB {
+    center (498, 147)
+    radius 3.5
+    fill seriesB
+  }
+  text legendTextB {
+    content "SGD"
+    at (518, 147)
+    color ink
+    font-size 12
+    align left
+    vertical-align middle
+  }
+
+  line legendLineC {
+    from (486, 169)
+    to (510, 169)
+    color seriesC
+    width 3
+    line-cap round
+  }
+  circle legendDotC {
+    center (498, 169)
+    radius 3.5
+    fill seriesC
+  }
+  text legendTextC {
+    content "Lion"
+    at (518, 169)
+    color ink
+    font-size 12
+    align left
+    vertical-align middle
+  }
+
+  // annotation for best final loss
+  path arrowBest {
+    move (600, 400)
+    line (620, 392)
+    stroke muted 1.5
+    line-cap round
+  }
+  text bestNote {
+    content "Lion final ≈ 0.17"
+    at (560, 405)
+    color muted
+    font-size 11
+    align right
+    vertical-align middle
+  }
+
+  // footnote
+  text footnote {
+    content "三种优化器的训练损失对比（示意数据）"
+    at (360, 468)
+    color muted
+    font-size 11
+    align center
+    vertical-align middle
+  }
+}
