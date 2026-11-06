@@ -1,0 +1,14 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "noEmit": false,
+    "outDir": "dist",
+    "paths": {},
+    "rootDir": "src",
+    "types": ["node"]
+  },
+  "include": ["src/index.ts", "src/render.ts", "src/server.ts"],
+  "exclude": ["src/**/*.test.ts"]
+}

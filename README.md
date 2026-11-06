@@ -31,6 +31,7 @@ Chamebrush 是一门实验性的声明式二维绘图语言。编译器将 `.cha
 - 分组、平移、旋转、缩放、透明度、阴影和描边样式；
 - 多画布文件与基于画布的逐帧预览；
 - SVG、PNG、WebP 导出；
+- 可供 AI Agent 调用的 Skill、JSON CLI 输出和 MCP App 预览；
 - React/Vite Playground，内置 CodeMirror 6、Lezer 增量解析和实时预览。
 
 ## 示例
@@ -134,6 +135,7 @@ chame render <input.chame> -o <output.svg|png|webp> [--canvas name] [--scale num
 chame render drawing.chame -o drawing.svg
 chame render drawing.chame -o drawing.png --scale 2
 chame render drawing.chame -o drawing.webp --canvas main --scale 2
+chame render drawing.chame -o drawing.svg --json
 ```
 
 在源码仓库中，也可以使用开发命令：
@@ -150,6 +152,31 @@ CLI 行为：
 - 未指定 `--canvas` 时编译全部画布，多画布文件输出为 `<文件名>-<画布名>.<扩展名>`；
 - 非 `data:` 图片路径相对于输入 `.chame` 文件解析，远程 URL 会被拒绝；
 - `animation` 配置不会生成动画文件，每个 `canvas` 仍导出为独立静态图。
+- `--json` 将成功结果或源码诊断作为单行 JSON 写到标准输出，适合 AI Agent 和自动化程序调用。
+
+## AI Agent Skill 与交互预览
+
+[`skills/chamebrush-drawing`](skills/chamebrush-drawing) 提供绘图工作流和自包含的语法速查表。Skill 的运行时不依赖本仓库：MCP Viewer 通过 npm 包 `@chamebrush/mcp` 启动，纯终端回退则使用 npm 包 `@chamebrush/cli`。用户只需安装 Skill，并在客户端中注册下方的 MCP 服务器。
+
+`@chamebrush/mcp` 暴露 `chamebrush_render` 工具。Skill 要求 Agent 在该工具可用时必须用它执行最终验证，因为只有 MCP 工具调用会创建 Viewer。支持 MCP Apps 的 Codex、ChatGPT 或其他客户端会显示可切换的“预览 / 代码”界面；不支持 MCP Apps UI 的客户端仍会收到完整源码、文本摘要和结构化编译结果，因此同一套 Skill 也可以在纯终端 Agent 中使用。
+
+发布包安装后，可将以下 stdio 服务器加入客户端的 MCP 配置：
+
+```json
+{
+  "command": "npx",
+  "args": ["-y", "@chamebrush/mcp"]
+}
+```
+
+在源码仓库中开发时，先构建包，然后直接运行本地入口：
+
+```bash
+pnpm --filter @chamebrush/mcp build
+node packages/mcp/dist/main.js
+```
+
+富界面遵循渐进增强：支持 MCP Apps 的宿主直接显示交互 Viewer，并以 Viewer 作为主要结果，不再默认重复附加图片和多种格式文件；其他宿主由 Skill 返回 `chame` fenced code block，以及一种 SVG/PNG 预览。Codex 无需注入自定义 Markdown renderer，代码/预览切换由标准 MCP Apps UI 提供。工具卡片在思考过程中的折叠状态由宿主控制，MCP App 不能强制展开。
 
 ## 浏览器 API
 
@@ -228,6 +255,7 @@ renderer-independent Scene
 | `packages/renderer-svg` | 纯 TypeScript 的 Scene → SVG 渲染器 |
 | `packages/browser` | 浏览器公共 API 与 Canvas 位图导出 |
 | `packages/cli` | Node.js CLI、资源校验与 Sharp 位图导出 |
+| `packages/mcp` | AI Agent 渲染工具与可切换代码/预览的 MCP App |
 | `apps/playground` | React/Vite 编辑器、实时预览与逐帧播放 |
 | `examples` | 可执行 `.chame` 示例和约定提交的 SVG |
 | `docs` | 正式语言规范和设计文档 |

@@ -1,0 +1,49 @@
+{
+  "name": "@chamebrush/mcp",
+  "version": "0.1.0",
+  "private": false,
+  "description": "MCP server and interactive code/preview app for Chamebrush drawings",
+  "type": "module",
+  "license": "MIT",
+  "keywords": [
+    "chamebrush",
+    "mcp",
+    "mcp-app",
+    "graphics"
+  ],
+  "files": [
+    "dist"
+  ],
+  "bin": {
+    "chame-mcp": "./dist/main.js"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "engines": {
+    "node": ">=20.11.0"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsup src/main.ts src/index.ts --format esm --clean --sourcemap && vite build --config vite.config.ts && tsc -p tsconfig.build.json",
+    "prepublishOnly": "pnpm build"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@chamebrush/core": "workspace:^",
+    "@chamebrush/language": "workspace:^",
+    "@chamebrush/renderer-svg": "workspace:^",
+    "@modelcontextprotocol/ext-apps": "^1.7.5",
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "zod": "^4.2.0"
+  },
+  "devDependencies": {
+    "vite-plugin-singlefile": "^2.3.0"
+  }
+}

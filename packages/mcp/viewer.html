@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chamebrush Preview</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+        font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+        background: transparent;
+        color: light-dark(#173b3a, #e5f4f2);
+      }
+      * { box-sizing: border-box; }
+      body { margin: 0; padding: 12px; }
+      .shell {
+        overflow: hidden;
+        border: 1px solid light-dark(#cbd9d7, #324a47);
+        border-radius: 12px;
+        background: light-dark(#ffffff, #101817);
+      }
+      .toolbar {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        min-height: 44px;
+        padding: 6px 8px;
+        border-bottom: 1px solid light-dark(#dce6e4, #293c39);
+      }
+      button {
+        border: 1px solid light-dark(#b7cbc7, #47635e);
+        border-radius: 7px;
+        padding: 6px 10px;
+        color: inherit;
+        background: light-dark(#f3f8f7, #192522);
+        font: inherit;
+      }
+      button[aria-selected="true"] {
+        border-color: #168a89;
+        color: light-dark(#0e6463, #79ddda);
+        background: light-dark(#e3f4f2, #123c3a);
+      }
+      .status { margin-left: auto; font-size: 12px; opacity: 0.72; }
+      .panel { min-height: 220px; max-height: 680px; overflow: auto; }
+      .preview {
+        display: grid;
+        align-content: center;
+        justify-items: center;
+        gap: 14px;
+        padding: 18px;
+        background: light-dark(#edf3f1, #0a100f);
+      }
+      .preview-content { display: grid; max-width: 100%; justify-items: center; }
+      .preview-content svg { display: block; width: auto; height: auto; max-width: 100%; max-height: 600px; }
+      .canvas-switcher {
+        display: flex;
+        max-width: 100%;
+        align-items: center;
+        gap: 8px;
+        overflow-x: auto;
+        padding: 2px;
+      }
+      .canvas-dot {
+        display: grid;
+        flex: 0 0 auto;
+        width: 26px;
+        height: 26px;
+        place-items: center;
+        padding: 0;
+        border-color: light-dark(#78918c, #47635e);
+        border-radius: 999px;
+        color: light-dark(#55706b, #9cb7b2);
+        background: light-dark(#f3f8f7, #192522);
+        font-size: 12px;
+      }
+      .canvas-dot:hover { border-color: #168a89; }
+      .canvas-dot.active {
+        border-color: #168a89;
+        color: white;
+        background: #168a89;
+      }
+      pre { margin: 0; padding: 16px; min-height: 220px; white-space: pre-wrap; tab-size: 2; font: 13px/1.6 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+      .diagnostics { margin: 0; padding: 16px 16px 16px 36px; color: light-dark(#a32323, #ffb4ab); }
+      [hidden] { display: none !important; }
+    </style>
+  </head>
+  <body>
+    <main class="shell">
+      <nav class="toolbar" aria-label="Chamebrush view">
+        <button id="preview-tab" type="button" aria-selected="true">预览</button>
+        <button id="code-tab" type="button" aria-selected="false">代码</button>
+        <span id="status" class="status">等待渲染…</span>
+      </nav>
+      <section id="preview-panel" class="panel preview">
+        <div id="preview-content" class="preview-content"><span>等待 Chamebrush 结果…</span></div>
+        <div id="canvas-switcher" class="canvas-switcher" role="group" aria-label="选择画布" hidden></div>
+      </section>
+      <pre id="code-panel" class="panel" hidden><code id="source"></code></pre>
+      <ol id="diagnostics" class="panel diagnostics" hidden></ol>
+    </main>
+    <script type="module" src="/src/viewer.ts"></script>
+  </body>
+</html>

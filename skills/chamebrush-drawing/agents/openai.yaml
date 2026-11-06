@@ -1,0 +1,8 @@
+interface:
+  display_name: "Chamebrush Drawing"
+  short_description: "用可编辑 Chamebrush 代码生成并渲染二维图形"
+  brand_color: "#168A89"
+  default_prompt: "Use $chamebrush-drawing to create an editable graphic and render a preview."
+
+policy:
+  allow_implicit_invocation: true

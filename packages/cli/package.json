@@ -1,6 +1,6 @@
 {
   "name": "@chamebrush/cli",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": false,
   "description": "Command-line renderer for Chamebrush drawing files",
   "type": "module",
