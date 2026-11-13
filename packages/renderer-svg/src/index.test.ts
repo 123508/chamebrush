@@ -1,6 +1,6 @@
 import { expect, test } from "vitest";
 import { compile } from "@chamebrush/core";
-import { renderSvg } from "./index";
+import { renderPreviewSvg, renderSvg } from "./index";
 
 test("renders escaped SVG", () => {
   const result = compile(`canvas main {
@@ -16,6 +16,39 @@ test("renders escaped SVG", () => {
   const svg = renderSvg(result.scene);
   expect(svg).toContain("A &lt; B &amp; C");
   expect(svg).toContain('viewBox="0 0 320 180"');
+});
+
+test("adds hit targets only to the interactive preview", () => {
+  const result = compile(`canvas main {
+  size (100, 80)
+  group layer {
+    line edge {
+      from (10, 20)
+      to (90, 20)
+      translate (0, 5)
+    }
+    connect relation {
+      from (10, 40)
+      to (90, 40)
+      label "A & B"
+    }
+    circle hidden {
+      center (10, 10)
+      radius 5
+      visible false
+    }
+  }
+}`);
+  if (!result.ok) throw new Error("Expected successful compilation");
+  const svg = renderPreviewSvg(result.scene);
+  expect(svg).toContain('data-chame-id="layer"');
+  expect(svg).toMatch(/<line data-chame-id="layer.edge"[^>]*pointer-events="stroke"[^>]*transform="translate\(0 5\)"/);
+  expect(svg).toMatch(/<path id="layer.relation"[^>]*data-chame-id="layer.relation"/);
+  expect(svg).toMatch(/<text data-chame-id="layer.relation"[^>]*>A &amp; B<\/text>/);
+  expect(svg).not.toContain("layer.hidden");
+  expect(svg).toContain('<filter id="chame-preview-outline"');
+  expect(svg).toContain('<feComposite in="expanded" in2="silhouette" operator="out"');
+  expect(renderSvg(result.scene)).not.toMatch(/data-chame-|chame-preview-outline/);
 });
 
 test("renders transforms, shadows, line joins and wrapped text", () => {

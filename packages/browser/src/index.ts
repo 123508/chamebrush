@@ -1,5 +1,5 @@
-export { compile, compileAll, type AnimationSettings, type CompileAllResult, type CompileResult, type Scene } from "@chamebrush/core";
-export { renderSvg } from "@chamebrush/renderer-svg";
+export { compile, compileAll, type AnimationSettings, type CompileAllResult, type CompileResult, type Scene, type SceneNode } from "@chamebrush/core";
+export { renderPreviewSvg, renderSvg } from "@chamebrush/renderer-svg";
 
 import { compile, type Scene } from "@chamebrush/core";
 import { renderSvg } from "@chamebrush/renderer-svg";

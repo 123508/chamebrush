@@ -1,6 +1,6 @@
 {
   "name": "@chamebrush/core",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": false,
   "description": "Semantic compiler and renderer-independent scene model for Chamebrush",
   "type": "module",

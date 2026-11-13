@@ -121,7 +121,7 @@ pnpm install
 pnpm dev
 ```
 
-`pnpm dev` 启动 Playground，默认地址为 <http://localhost:4173>。页面提供实时编辑、错误标记、画布预览，以及 SVG、PNG 和 WebP 导出。
+`pnpm dev` 启动 Playground，默认地址为 <http://localhost:4173>。页面提供实时编辑、错误标记、画布预览，以及 SVG、PNG 和 WebP 导出。点击预览中的图形可高亮其轮廓，并将左侧光标定位到对象声明处。点击空白处可取消选中。
 
 ## 命令行使用
 

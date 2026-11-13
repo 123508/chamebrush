@@ -41,6 +41,8 @@ export type SceneTransform =
 
 export interface SceneBase {
   id: string;
+  /** Declaration range, when the node was compiled from source. */
+  sourceRange?: SourceRange;
   opacity: number;
   visible: boolean;
   transforms: SceneTransform[];
@@ -505,6 +507,7 @@ function shadowOf(object: ObjectNode, context: CompileContext): Shadow | null {
 function baseOf(object: ObjectNode, id: string, context: CompileContext, bounds: Bounds): SceneBase {
   return {
     id,
+    sourceRange: object.range,
     opacity: opacityOf(object, context),
     visible: visibleOf(object, context),
     transforms: transformsOf(object, bounds, context),

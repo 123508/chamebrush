@@ -217,6 +217,10 @@ button:disabled {
   box-shadow: 0 24px 60px #00000055;
 }
 
+.svg-preview [data-chame-id] {
+  cursor: pointer;
+}
+
 .preview-content {
   display: grid;
   max-width: 100%;

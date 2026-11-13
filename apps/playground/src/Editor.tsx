@@ -5,6 +5,7 @@ import {
   bracketMatching,
   codeFolding,
   delimitedIndent,
+  foldedRanges,
   foldGutter,
   foldInside,
   foldKeymap,
@@ -15,9 +16,10 @@ import {
   LanguageSupport,
   LRLanguage,
   syntaxHighlighting,
+  unfoldEffect,
 } from "@codemirror/language";
 import { setDiagnostics, type Diagnostic as CmDiagnostic } from "@codemirror/lint";
-import { EditorState } from "@codemirror/state";
+import { EditorState, type StateEffect } from "@codemirror/state";
 import { EditorView, drawSelection, highlightActiveLine, keymap, lineNumbers } from "@codemirror/view";
 import { tags } from "@lezer/highlight";
 
@@ -30,6 +32,7 @@ interface Diagnostic {
 interface EditorProps {
   value: string;
   diagnostics: Diagnostic[];
+  reveal: { from: number } | undefined;
   onChange(value: string): void;
 }
 
@@ -75,7 +78,7 @@ function toCodeMirrorDiagnostics(diagnostics: Diagnostic[], length: number): CmD
   }));
 }
 
-export function Editor({ value, diagnostics, onChange }: EditorProps) {
+export function Editor({ value, diagnostics, reveal, onChange }: EditorProps) {
   const container = useRef<HTMLDivElement>(null);
   const view = useRef<EditorView | undefined>(undefined);
   const onChangeRef = useRef(onChange);
@@ -125,6 +128,18 @@ export function Editor({ value, diagnostics, onChange }: EditorProps) {
     if (current !== value) editor.dispatch({ changes: { from: 0, to: current.length, insert: value } });
     editor.dispatch(setDiagnostics(editor.state, toCodeMirrorDiagnostics(diagnostics, editor.state.doc.length)));
   }, [value, diagnostics]);
+
+  useEffect(() => {
+    const editor = view.current;
+    if (!editor || !reveal) return;
+    const { from } = reveal;
+    const effects: StateEffect<unknown>[] = [EditorView.scrollIntoView(from, { y: "center" })];
+    foldedRanges(editor.state).between(from, from, (start, end) => {
+      if (start <= from && from < end) effects.push(unfoldEffect.of({ from: start, to: end }));
+    });
+    editor.dispatch({ selection: { anchor: from }, effects });
+    editor.focus();
+  }, [reveal]);
 
   return <div className="code-editor" ref={container} aria-label="Chamebrush source editor" />;
 }

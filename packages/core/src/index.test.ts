@@ -2,6 +2,27 @@ import { describe, expect, test } from "vitest";
 import { compile, compileAll } from "./index";
 
 describe("compile", () => {
+  test("preserves declaration ranges for nested objects and across canvases", () => {
+    const declaration = "circle dot { center (20, 20)\n radius 5 }";
+    const source = `canvas first { size (100, 80) }
+canvas second {
+  size (100, 80)
+  group layer {
+    ${declaration}
+  }
+}`;
+    const result = compileAll(source);
+    if (!result.ok) throw new Error("Expected successful compilation");
+    const from = source.indexOf(declaration);
+    expect(result.scenes[1]?.children[0]).toMatchObject({
+      kind: "group",
+      children: [{
+        id: "layer.dot",
+        sourceRange: { from, to: from + declaration.length, line: 5, column: 5 },
+      }],
+    });
+  });
+
   test("compiles variables, anchors and connectors", () => {
     const result = compile(`let width 200
 let gap 40

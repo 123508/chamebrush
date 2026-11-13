@@ -1,9 +1,10 @@
-import { StrictMode, useDeferredValue, useEffect, useMemo, useState } from "react";
+import { StrictMode, useDeferredValue, useEffect, useMemo, useState, type MouseEvent } from "react";
 import { createRoot } from "react-dom/client";
-import { compileAll, renderPngBlob, renderSvg, renderSvgBlob, renderWebpBlob } from "@chamebrush/browser";
+import { compileAll, renderPngBlob, renderPreviewSvg, renderSvgBlob, renderWebpBlob, type Scene, type SceneNode } from "@chamebrush/browser";
 import logoUrl from "../../../examples/logo.svg";
 import { Editor } from "./Editor";
 import { initialSource } from "./example";
+import { Preview } from "./Preview";
 import "./styles.css";
 
 function download(blob: Blob, filename: string): void {
@@ -17,16 +18,27 @@ function download(blob: Blob, filename: string): void {
   window.setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
 
+function findNode(nodes: SceneNode[], id: string): SceneNode | undefined {
+  for (const node of nodes) {
+    if (node.id === id) return node;
+    if (node.kind === "group") {
+      const child = findNode(node.children, id);
+      if (child) return child;
+    }
+  }
+}
+
 function App() {
   const [source, setSource] = useState(initialSource);
   const [selectedCanvas, setSelectedCanvas] = useState(0);
+  const [selection, setSelection] = useState<{ scene: Scene; id: string; reveal: { from: number } }>();
   const [exporting, setExporting] = useState<"svg" | "png" | "webp">();
   const [exportStatus, setExportStatus] = useState<{ kind: "success" | "error"; message: string }>();
   const deferredSource = useDeferredValue(source);
   const result = useMemo(() => compileAll(deferredSource), [deferredSource]);
   const [playback, setPlayback] = useState({ result, frame: 0 });
   const fps = result.ok ? result.animation?.fps : undefined;
-  const frames = useMemo(() => result.ok ? result.scenes.map(renderSvg) : [], [result]);
+  const frames = useMemo(() => result.ok ? result.scenes.map(renderPreviewSvg) : [], [result]);
 
   useEffect(() => {
     if (!fps || frames.length < 2) return;
@@ -49,6 +61,19 @@ function App() {
     : 0;
   const scene = result.ok ? result.scenes[activeCanvasIndex] : undefined;
   const svg = frames[activeCanvasIndex] ?? "";
+  const activeSelection = selection?.scene === scene && source === deferredSource ? selection : undefined;
+  if (selection && !activeSelection) setSelection(undefined);
+
+  const selectElement = (event: MouseEvent<HTMLDivElement>) => {
+    if (!scene || source !== deferredSource) return;
+    const target = event.target;
+    if (!(target instanceof Element) || target.closest("button")) return;
+    const id = target.closest(".svg-preview [data-chame-id]")?.getAttribute("data-chame-id");
+    const node = id == null ? undefined : findNode(scene.children, id);
+    setSelection(node?.sourceRange
+      ? { scene, id: node.id, reveal: { from: node.sourceRange.from } }
+      : undefined);
+  };
 
   const exportFile = async (format: "svg" | "png" | "webp") => {
     if (!scene) return;
@@ -105,7 +130,7 @@ function App() {
             <span>drawing.chame</span>
             <span>{source.split("\n").length} 行</span>
           </div>
-          <Editor value={source} diagnostics={result.ok ? [] : result.diagnostics} onChange={setSource} />
+          <Editor value={source} diagnostics={result.ok ? [] : result.diagnostics} reveal={activeSelection?.reveal} onChange={setSource} />
           {!result.ok && (
             <div className="diagnostics">
               {result.diagnostics.map((diagnostic, index) => (
@@ -123,10 +148,10 @@ function App() {
             <span>实时预览</span>
             {scene && <span>{scene.width} × {scene.height}{fps ? ` · ${fps} fps · ${activeCanvasIndex + 1}/${frames.length}` : ""}</span>}
           </div>
-          <div className="preview-stage">
+          <div className="preview-stage" onClick={selectElement}>
             {scene
               ? <div className="preview-content">
-                  <div className="svg-preview" dangerouslySetInnerHTML={{ __html: svg }} />
+                  <Preview svg={svg} selectedId={activeSelection?.id} />
                   {result.ok && result.scenes.length > 1 && !fps && (
                     <div className="canvas-switcher" aria-label="选择画布">
                       {result.scenes.map((canvas, index) => (
