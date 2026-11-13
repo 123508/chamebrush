@@ -34,6 +34,8 @@ Chamebrush 是一门实验性的声明式二维绘图语言。编译器将 `.cha
 - 可供 AI Agent 调用的 Skill、JSON CLI 输出和 MCP App 预览；
 - React/Vite Playground，内置 CodeMirror 6、Lezer 增量解析和实时预览。
 
+> 变量名、画布名和对象名不能包含连字符；请使用 `furDark` 或 `legFront` 这样的 camelCase 名称。`font-size`、`line-cap` 等命令名可以包含连字符。
+
 ## 示例
 
 ```chame

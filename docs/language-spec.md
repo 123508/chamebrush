@@ -522,6 +522,8 @@ canvas frame2 { size (320, 200) }
 - 不能包含连字符 `-`；
 - 区分大小写。
 
+含连字符的声明名必须报错，不得被视为新的变量或对象。例如，`fur-dark`、`main-canvas` 和 `leg-front` 都不是合法的声明名；应改用 `furDark`、`mainCanvas` 和 `legFront`。
+
 推荐使用 `camelCase`：
 
 ```chame
@@ -529,7 +531,7 @@ let cardWidth 200
 canvas mainPoster { size (800, 600) }
 ```
 
-命令名称允许连字符，所以 `font-size`、`line-cap` 是合法命令。
+命令名称允许连字符，所以 `font-size`、`line-cap` 和 `radius-x` 是合法命令。这项例外仅适用于命令名，不适用于变量名、画布名或对象名。
 
 ### 换行
 

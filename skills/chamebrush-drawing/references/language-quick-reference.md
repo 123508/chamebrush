@@ -31,7 +31,7 @@ canvas main {
 }
 ```
 
-A file needs at least one named `canvas` with `size (width, height)`. Later objects paint over earlier objects. Names use letters, numbers, and `_`, cannot contain `-`, and are case-sensitive. Commands such as `font-size` may contain `-`.
+A file needs at least one named `canvas` with `size (width, height)`. Later objects paint over earlier objects. Variable, canvas, and object names must start with a Unicode letter or `_`; later characters may also be numbers. These declaration names are case-sensitive and must not contain `-`. Use camelCase names such as `furDark`, `mainCanvas`, and `legFront`, not `fur-dark`, `main-canvas`, or `leg-front`; the invalid forms produce a compiler diagnostic. Command names are the exception: `font-size`, `line-cap`, and `radius-x` are valid.
 
 ## Command line boundaries
 
@@ -65,7 +65,7 @@ Write multiline source directly. Do not compact commands and later split them wi
 - Points and sizes: `(x, y)`.
 - Strings: double-quoted; use quotes for hex colors, spaces, paths, and URLs.
 - Lists: `[(10, 10), (40, 30), (20, 80)]`, with commas or newlines.
-- Variables: `let gap 24`; declare before use.
+- Variables: `let gap 24`; declare before use, and use `camelCase` or `_` instead of `-` in the name.
 - Comments: `// line` or `/* block */`.
 
 ## Objects

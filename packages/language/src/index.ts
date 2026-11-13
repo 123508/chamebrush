@@ -310,6 +310,7 @@ class Parser {
         if (!(error instanceof ParseError)) throw error;
         this.report(error);
         this.recoverLine();
+        if (this.check("}")) this.advance();
       }
       this.skipNewlines();
     }
@@ -501,7 +502,7 @@ class Parser {
 
   private validateName(token: Token): void {
     if (token.text.includes("-")) {
-      throw new ParseError("名称不能包含连字符，请使用 camelCase 或下划线", token.range);
+      this.report(new ParseError("名称不能包含连字符，请使用 camelCase 或下划线", token.range));
     }
   }
 
