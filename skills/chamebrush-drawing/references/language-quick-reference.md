@@ -1,6 +1,6 @@
 # Chamebrush quick reference
 
-Use this bundled, self-contained reference to generate valid Chamebrush 0.1 source for the `@chamebrush/cli` and `@chamebrush/mcp` npm packages. Do not invent syntax that is not listed here.
+Use this bundled, self-contained reference to generate valid Chamebrush 0.1 source. Do not invent syntax that is not listed here.
 
 ## Document shape
 
