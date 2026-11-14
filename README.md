@@ -156,29 +156,17 @@ CLI 行为：
 - `animation` 配置不会生成动画文件，每个 `canvas` 仍导出为独立静态图。
 - `--json` 将成功结果或源码诊断作为单行 JSON 写到标准输出，适合 AI Agent 和自动化程序调用。
 
-## AI Agent Skill 与交互预览
+## AI Agent Skill
 
-[`skills/chamebrush-drawing`](skills/chamebrush-drawing) 提供绘图工作流和自包含的语法速查表。Skill 的运行时不依赖本仓库：MCP Viewer 通过 npm 包 `@chamebrush/mcp` 启动，纯终端回退则使用 npm 包 `@chamebrush/cli`。用户只需安装 Skill，并在客户端中注册下方的 MCP 服务器。
+[`skills/chamebrush-drawing`](skills/chamebrush-drawing) 提供绘图工作流和自包含的语法速查表，运行时使用 npm 包，无需克隆本仓库。所有客户端使用 `@chamebrush/cli`；Codex 桌面端还可配置 `@chamebrush/mcp` 以使用交互式 Viewer，MiMo Desktop / MiMoCode Desktop 则通过 `sci-widget` 显示预览。
 
-`@chamebrush/mcp` 暴露 `chamebrush_render` 工具。Skill 要求 Agent 在该工具可用时必须用它执行最终验证，因为只有 MCP 工具调用会创建 Viewer。支持 MCP Apps 的 Codex、ChatGPT 或其他客户端会显示可切换的“预览 / 代码”界面；不支持 MCP Apps UI 的客户端仍会收到完整源码、文本摘要和结构化编译结果，因此同一套 Skill 也可以在纯终端 Agent 中使用。
+### 安装 Skill
 
-发布包安装后，可将以下 stdio 服务器加入客户端的 MCP 配置：
+将下面的提示词复制给你的 AI Agent，让它根据当前客户端完成安装和配置：
 
-```json
-{
-  "command": "npx",
-  "args": ["-y", "@chamebrush/mcp"]
-}
+```text
+请阅读 https://raw.githubusercontent.com/123508/chamebrush/refs/heads/main/docs/agent-install.md，按照文档为我安装 Chamebrush Skill，并根据当前使用的客户端完成相应配置。完成后请报告安装和验证结果。
 ```
-
-在源码仓库中开发时，先构建包，然后直接运行本地入口：
-
-```bash
-pnpm --filter @chamebrush/mcp build
-node packages/mcp/dist/main.js
-```
-
-富界面遵循渐进增强：支持 MCP Apps 的宿主直接显示交互 Viewer，并以 Viewer 作为主要结果，不再默认重复附加图片和多种格式文件；其他宿主由 Skill 返回 `chame` fenced code block，以及一种 SVG/PNG 预览。Codex 无需注入自定义 Markdown renderer，代码/预览切换由标准 MCP Apps UI 提供。工具卡片在思考过程中的折叠状态由宿主控制，MCP App 不能强制展开。
 
 ## 浏览器 API
 
